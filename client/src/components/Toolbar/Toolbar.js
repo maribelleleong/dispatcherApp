@@ -6,8 +6,6 @@ import { DownloadButton } from './DownloadButton';
 import Grid from '@material-ui/core/Grid';
 
 const Toolbar = ({ drivers, driver, setDriver }) => {
-  // const drivers = ['John Doe', 'Fierce Bob', 'Aaron Smith'];
-
   return (
     <Grid
       container
