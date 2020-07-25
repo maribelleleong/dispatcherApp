@@ -1,8 +1,8 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
-import DayList from './DayList/DayList';
-import TimeList from './TimeList/TimeList';
+import DayList from './DayList';
+import TimeList from './TimeList';
 
 const Schedule = () => {
   return (
