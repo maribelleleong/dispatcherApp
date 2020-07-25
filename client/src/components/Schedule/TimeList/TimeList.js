@@ -15,29 +15,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// generate ['00:00' .. '23:00']
 const timeArr = () => {
   return [...Array(24).keys()].map((time) =>
     time <= 9 ? `0${time}:00` : `${time}:00`
   );
 };
-
-// const timeList = () => {
-//   return (
-//     <Grid
-//       container
-//       spacing={1}
-//       direction='column-reverse'
-//       justify='flex-start'
-//       alignItems='flex-start'
-//     >
-//       {timeArr().map((value) => (
-//         <Grid key={value} item xs={12 / 7}>
-//           <Paper className={classes.paper}>{value}</Paper>
-//         </Grid>
-//       ))}
-//     </Grid>
-//   );
-// };
 
 const TimeList = () => {
   const classes = useStyles();
