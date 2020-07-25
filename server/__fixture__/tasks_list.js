@@ -696,3 +696,7 @@ const tasks_list = {
     },
   },
 };
+
+module.exports = {
+  tasks_list,
+};
