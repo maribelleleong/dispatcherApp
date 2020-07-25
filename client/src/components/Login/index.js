@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function index(props) {
-  return <div>Hello</div>;
-}
+const Login = () => {
+  const [password, setPassword] = useState('');
 
-export default index;
+  return (
+    <div>
+      <form>
+        <div className='form-group'>
+          <input
+            type='password'
+            placeholder='Password'
+            name='password'
+            minLength='6'
+            value={password}
+          />
+        </div>
+        <input type='submit' className='btn btn-primary' value='Login' />
+      </form>
+    </div>
+  );
+};
+
+export default Login;
