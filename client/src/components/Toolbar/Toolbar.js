@@ -1,7 +1,7 @@
 import React from 'react';
 import DriverSelection from './DriverSelection';
 import { WeekSelection } from './WeekSelection';
-import { DownloadSelection } from './DownloadSelection';
+import { DownloadButton } from './DownloadButton';
 
 import Grid from '@material-ui/core/Grid';
 
@@ -17,7 +17,7 @@ const Toolbar = () => {
     >
       <DriverSelection drivers={drivers} />
       <WeekSelection />
-      <DownloadSelection />
+      <DownloadButton />
     </Grid>
   );
 };

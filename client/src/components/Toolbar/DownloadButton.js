@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     width: '50px',
   },
 });
-export const DownloadSelection = () => {
+export const DownloadButton = () => {
   const classes = useStyles();
 
   return (
