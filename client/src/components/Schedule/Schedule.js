@@ -7,8 +7,13 @@ import TimeList from './TimeList';
 const Schedule = () => {
   return (
     <Grid container spacing={1}>
-      <TimeList />
-      <DayList />
+      <Grid item lg={1}>
+        {' '}
+        <TimeList />
+      </Grid>
+      <Grid item lg={11}>
+        <DayList />
+      </Grid>
     </Grid>
   );
 };
