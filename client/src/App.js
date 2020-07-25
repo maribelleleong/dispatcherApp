@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 
@@ -10,17 +10,45 @@ import Schedule from './components/Schedule/Schedule';
 import './App.scss';
 
 function App() {
-  const [tasksList, setTasksList] = useState('');
+  // const [tasksList, setTasksList] = useState({});
+  // const [driver, setDriver] = useState('');
+  // const [drivers, setDrivers] = useState([]);
+
+  const [state, setState] = useState({
+    tasksList: {},
+    driver: '',
+    drivers: [],
+  });
+
   useEffect(() => {
     console.log('rawr from useEffect');
     axios.get('/tasks').then((res) => {
-      setTasksList(res.data);
+      console.log(res.data);
+      console.log(Object.keys(res.data));
+
+      setState((prev) => ({
+        ...prev,
+        tasksList: res.data,
+        drivers: Object.keys(res.data),
+        driver: Object.keys(res.data)[0],
+      }));
+
+      console.log(state.drivers);
     });
   }, []);
+
+  const setDriver = (name) => {
+    setState((prev) => ({ ...prev, driver: name }));
+  };
+
   return (
     <Router>
       <Navbar />
-      <Toolbar />
+      <Toolbar
+        drivers={state.drivers}
+        driver={state.driver}
+        setDriver={setDriver}
+      />
       <Schedule />
       <Switch>
         <Route exact path='/login' component={Login} />

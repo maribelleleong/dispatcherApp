@@ -5,7 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-const DriverSelection = ({ drivers }) => {
+const DriverSelection = ({ drivers, driver, setDriver }) => {
   const useStyles = makeStyles((theme) => ({
     formControl: {
       margin: theme.spacing(1),
@@ -17,12 +17,6 @@ const DriverSelection = ({ drivers }) => {
   }));
   const classes = useStyles();
 
-  const handleChange = (event) => {
-    setDriverName(event.target.value);
-  };
-
-  const [driverName, setDriverName] = useState(drivers[0]);
-
   const MenuItems = drivers.map((driver) => (
     <MenuItem value={driver}>{driver}</MenuItem>
   ));
@@ -33,8 +27,8 @@ const DriverSelection = ({ drivers }) => {
         <Select
           labelId='demo-simple-select-label'
           id='demo-simple-select'
-          value={driverName}
-          onChange={handleChange}
+          value={driver}
+          onChange={(event) => setDriver(event.target.value)}
         >
           {MenuItems}
         </Select>

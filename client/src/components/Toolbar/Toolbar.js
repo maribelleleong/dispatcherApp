@@ -5,8 +5,8 @@ import { DownloadButton } from './DownloadButton';
 
 import Grid from '@material-ui/core/Grid';
 
-const Toolbar = () => {
-  const drivers = ['John Doe', 'Fierce Bob', 'Aaron Smith'];
+const Toolbar = ({ drivers, driver, setDriver }) => {
+  // const drivers = ['John Doe', 'Fierce Bob', 'Aaron Smith'];
 
   return (
     <Grid
@@ -15,7 +15,11 @@ const Toolbar = () => {
       alignItems='flex-end'
       justify='space-between'
     >
-      <DriverSelection drivers={drivers} />
+      <DriverSelection
+        drivers={drivers}
+        driver={driver}
+        setDriver={setDriver}
+      />
       <WeekSelection />
       <DownloadButton />
     </Grid>
