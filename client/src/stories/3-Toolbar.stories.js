@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -8,6 +8,6 @@ import DriverSelection from '../components/Toolbar/DriverSelection';
 
 const drivers = ['John Doe', 'Fierce Bob', 'Aaron Smith'];
 
-storiesOf('Toolbar', module).add('DriverSelection', () => (
-  <DriverSelection drivers={drivers} />
-));
+storiesOf('Toolbar', module)
+  .add('DriverSelection', () => <DriverSelection drivers={drivers} />)
+  .add('Toolbar', () => <Toolbar />);
