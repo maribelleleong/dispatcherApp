@@ -26,26 +26,22 @@ const TimeList = () => {
   const classes = useStyles();
 
   return (
-    <div>
-      {
-        <Grid
-          container
-          spacing={1}
-          direction='column'
-          justify='flex-start'
-          alignItems='flex-start'
-        >
-          <Grid key={0} item xs={12 / 24}>
-            <Paper className={classes.paper}>{'Time'}</Paper>
-          </Grid>
-          {timeArr().map((value) => (
-            <Grid key={value} item xs={12 / 24}>
-              <Paper className={classes.paper}>{value}</Paper>
-            </Grid>
-          ))}
+    <Grid
+      container
+      spacing={1}
+      direction='column'
+      justify='flex-start'
+      alignItems='flex-stretch'
+    >
+      <Grid key={0} item xs>
+        <Paper className={classes.paper}>{'Time'}</Paper>
+      </Grid>
+      {timeArr().map((value) => (
+        <Grid key={value} item xs>
+          <Paper className={classes.paper}>{value}</Paper>
         </Grid>
-      }
-    </div>
+      ))}
+    </Grid>
   );
 };
 

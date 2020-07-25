@@ -29,23 +29,13 @@ const DayList = () => {
   const classes = useStyles();
 
   return (
-    <div>
-      {
-        <Grid
-          container
-          spacing={3}
-          direction='row'
-          justify='flex-end'
-          alignItems='center'
-        >
-          {dayArr.map((value) => (
-            <Grid key={value} item xs={12 / 7}>
-              <Paper className={classes.paper}>{value}</Paper>
-            </Grid>
-          ))}
+    <Grid container spacing={3} justify='space-around' alignItems='flex-start'>
+      {dayArr.map((value) => (
+        <Grid key={value} item xs>
+          <Paper className={classes.paper}>{value}</Paper>
         </Grid>
-      }
-    </div>
+      ))}
+    </Grid>
   );
 };
 
