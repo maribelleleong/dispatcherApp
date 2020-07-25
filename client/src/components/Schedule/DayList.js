@@ -25,8 +25,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const num = 12 / 7;
-
 const DayList = () => {
   const classes = useStyles();
 
@@ -37,11 +35,11 @@ const DayList = () => {
           container
           spacing={3}
           direction='row'
-          justify='space-between'
+          justify='flex-end'
           alignItems='center'
         >
           {dayArr.map((value) => (
-            <Grid key={value} item xs={num}>
+            <Grid key={value} item xs={12 / 7}>
               <Paper className={classes.paper}>{value}</Paper>
             </Grid>
           ))}
