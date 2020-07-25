@@ -2,7 +2,7 @@ const DROP_OFF = 'drop-off';
 const PICK_UP = 'pick-up';
 const OTHER = 'other';
 
-const dispatcherInfo = {
+const tasksInfo = {
   'Aaron Smith': {
     '1': {
       '1': {
