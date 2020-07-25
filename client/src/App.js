@@ -10,12 +10,10 @@ import Schedule from './components/Schedule/Schedule';
 import './App.scss';
 
 function App() {
-  // const [tasksList, setTasksList] = useState({});
-  // const [driver, setDriver] = useState('');
-  // const [drivers, setDrivers] = useState([]);
-
   const [state, setState] = useState({
     tasksList: {},
+    week: 1,
+    tasksOfWeek: {},
     driver: '',
     drivers: [],
   });
@@ -29,6 +27,7 @@ function App() {
       setState((prev) => ({
         ...prev,
         tasksList: res.data,
+        tasksOfWeek: Object.values(res.data)[0][1],
         drivers: Object.keys(res.data),
         driver: Object.keys(res.data)[0],
       }));

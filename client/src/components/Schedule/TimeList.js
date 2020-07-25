@@ -30,7 +30,7 @@ const TimeList = () => {
       spacing={1}
       direction='column'
       justify='flex-start'
-      alignItems='flex-stretch'
+      alignItems='stretch'
     >
       <Grid key={0} item xs>
         <Paper className={classes.paper}>{'Time'}</Paper>

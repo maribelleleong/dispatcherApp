@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -18,7 +18,9 @@ const DriverSelection = ({ drivers, driver, setDriver }) => {
   const classes = useStyles();
 
   const MenuItems = drivers.map((driver) => (
-    <MenuItem value={driver}>{driver}</MenuItem>
+    <MenuItem key={driver} value={driver}>
+      {driver}
+    </MenuItem>
   ));
   return (
     <div>
