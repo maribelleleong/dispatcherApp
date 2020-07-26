@@ -5,7 +5,7 @@ import { DownloadButton } from './DownloadButton';
 
 import Grid from '@material-ui/core/Grid';
 
-const Toolbar = ({ drivers, driver, setDriver }) => {
+const Toolbar = ({ drivers, driver, setDriver, changeWeek, week }) => {
   return (
     <Grid
       container
@@ -18,7 +18,7 @@ const Toolbar = ({ drivers, driver, setDriver }) => {
         driver={driver}
         setDriver={setDriver}
       />
-      <WeekSelection />
+      <WeekSelection changeWeek={changeWeek} week={week} />
       <DownloadButton />
     </Grid>
   );

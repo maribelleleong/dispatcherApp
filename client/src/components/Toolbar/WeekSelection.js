@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -13,13 +14,34 @@ const useStyles = makeStyles({
   },
 });
 
-export const WeekSelection = () => {
+export const WeekSelection = ({ changeWeek, week }) => {
   const classes = useStyles();
+
+  const changeInput = (event) => {
+    console.log('change week', event.target.value);
+    changeWeek(event.target.value);
+  };
+
+  const changeWeekArrow = (type) => {
+    console.log(week);
+    let weekchg = week;
+    if (type == 'left') {
+      if (week >= 1) {
+        weekchg -= 1;
+      }
+    } else if (week < 52) {
+      weekchg += 1;
+    }
+
+    changeWeek(weekchg);
+  };
 
   return (
     <Box display='flex'>
       <Box alignSelf='center'>
-        <NavigateBeforeIcon />
+        <IconButton onClick={() => changeWeekArrow('left')}>
+          <NavigateBeforeIcon />
+        </IconButton>
       </Box>
       <Typography variant='h6' gutterBottom>
         Week{' '}
@@ -32,11 +54,15 @@ export const WeekSelection = () => {
           InputLabelProps={{
             shrink: true,
           }}
+          value={week}
+          onChange={changeInput}
         />
       </Typography>
 
       <Box alignSelf='center'>
-        <NavigateNextIcon />
+        <IconButton onClick={() => changeWeekArrow('right')}>
+          <NavigateNextIcon />
+        </IconButton>
       </Box>
       {/* <MorphIcon type='arrowLeft' size={50} thickness={2} color='#dd6e78' /> */}
       {/* <MorphIcon type='arrowRight' size={50} thickness={2} color='#dd6e78' /> */}

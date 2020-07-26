@@ -28,14 +28,17 @@ const useStyles = makeStyles((theme) => ({
 
 const Week = ({ tasksOfWeek }) => {
   const classes = useStyles();
-
+  console.log(tasksOfWeek);
   return (
     <Grid container spacing={1} justify='space-around' alignItems='flex-start'>
       {tasksOfWeek && console.log(tasksOfWeek)}
 
       {dayObj &&
         Object.keys(dayObj).map((day) => (
-          <Day day={day} dayTasks={tasksOfWeek[dayObj[day]]} />
+          <Day
+            day={day}
+            dayTasks={tasksOfWeek ? tasksOfWeek[dayObj[day]] : null}
+          />
         ))}
     </Grid>
   );

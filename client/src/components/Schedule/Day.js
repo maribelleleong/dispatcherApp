@@ -17,8 +17,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const title = (input) => {};
-
 const Day = ({ day, dayTasks }) => {
   const classes = useStyles();
 
@@ -58,34 +56,11 @@ const Day = ({ day, dayTasks }) => {
     return taskSlotGrids;
   };
 
-  const taskSlot =
-    dayTasks &&
-    dayTasks.tasks.map((task) => (
-      <Grid
-        className={classes.grid}
-        key={task.id}
-        style={{ marginTop: `${task.start_time * 3.7}rem` }}
-        item
-        xs
-      >
-        <Paper className={classes.paper}>
-          <Typography gutterBottom>{task.type}</Typography>
-          <Typography gutterBottom>day: {day}</Typography>
-          <Typography gutterBottom variant='subtitle1'>
-            {task.location}
-          </Typography>
-          <Typography gutterBottom variant='subtitle1'>
-            {task.start_time} to {task.end_time}
-          </Typography>
-        </Paper>
-      </Grid>
-    ));
-
   return (
     <Grid key={day} item xs>
       <Paper className={classes.paper}>{day}</Paper>
-      {/* {taskSlot} */}
-      {dayTasks && getTaskSlots()}
+      {dayTasks ? getTaskSlots() : null}
+      {dayTasks && console.log(dayTasks)}
     </Grid>
   );
 };

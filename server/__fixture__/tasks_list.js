@@ -126,13 +126,6 @@ const tasks_list = {
             end_time: 16,
             location: 'Rona',
           },
-          {
-            id: '1015',
-            type: DROP_OFF,
-            start_time: 14,
-            end_time: 16,
-            location: 'Superstore',
-          },
         ],
       },
       '5': {

@@ -18,6 +18,18 @@ function App() {
     drivers: [],
   });
 
+  const changeWeek = (weekInput) => {
+    console.log('appjs', weekInput);
+    state.week = weekInput;
+    state.tasksOfWeek = state.tasksList[state.driver][weekInput];
+    setState({
+      ...state,
+      week: state.week,
+      tasksOfWeek: state.tasksOfWeek,
+    });
+    console.log('after chgweek', state);
+  };
+
   useEffect(() => {
     console.log('rawr from useEffect');
     axios.get('/tasks').then((res) => {
@@ -31,9 +43,25 @@ function App() {
     });
   }, []);
 
+  // useEffect(() =>{
+
+  // },[state.week])
+
   const setDriver = (event) => {
-    setState((prev) => ({ ...prev, driver: event.target.value }));
-    console.log(state.tasksOfWeek);
+    console.log('event click', event.target);
+    // setState((prev) => ({
+    //   ...prev,
+    //   driver: event.target.value,
+    //   tasksOfWeek: prev.tasksList[event.target.value][1],
+    // }));
+    state.driver = event.target.value;
+    state.tasksOfWeek = state.tasksList[event.target.value][state.week];
+    setState({
+      ...state,
+      driver: state.driver,
+      tasksOfWeek: state.tasksOfWeek,
+    });
+    console.log('set driver', state.driver, state.tasksOfWeek);
   };
 
   return (
@@ -43,6 +71,8 @@ function App() {
         drivers={state.drivers}
         driver={state.driver}
         setDriver={setDriver}
+        changeWeek={changeWeek}
+        week={state.week}
       />
       <Schedule tasksOfWeek={state.tasksOfWeek} />
       <Switch>

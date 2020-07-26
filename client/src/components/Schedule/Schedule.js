@@ -2,9 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 
-import DayList from './DayList';
 import TimeList from './TimeList';
-import DaySchedule from './DaySchedule';
 import Week from './Week';
 
 const useStyles = makeStyles((theme) => ({
@@ -20,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Schedule = ({ tasksOfWeek }) => {
   const classes = useStyles();
-
+  console.log('schedule', tasksOfWeek);
   return (
     <div className={classes.root}>
       <Grid container spacing={1}>
