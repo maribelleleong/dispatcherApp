@@ -54,34 +54,23 @@ const Day = ({ day, dayTasks }) => {
   //     ));
 
   return (
-    <Grid
-      container
-      spacing={3}
-      justify='space-around'
-      direction='column'
-      alignItems='flex-start'
-    >
-      <Grid key={day} item spacing={1} xs>
-        <Paper className={classes.paper}>{day}</Paper>
-      </Grid>
+    <Grid key={day} item spacing={1}>
+      <Paper className={classes.paper}>{day}</Paper>
       {taskSlot}
     </Grid>
+    // <div>
+    //   <Grid
+    //     container
+    //     spacing={3}
+    //     justify='space-around'
+    //     alignItems='flex-start'
+    //   >
+    //     <Grid key={day} item xs>
+    //       <Paper className={classes.paper}>{day}</Paper>
+    //     </Grid>
+    //   </Grid>
+    // </div>
   );
 };
-
-{
-  /* // <div>
-// <Grid
-  container
-  spacing={3}
-  justify='space-around'
-  alignItems='flex-start'
->
-  <Grid key={day} item xs>
-    <Paper className={classes.paper}>{day}</Paper>
-  </Grid>
-</Grid>
-</div> */
-}
 
 export default Day;
