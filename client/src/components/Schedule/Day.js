@@ -8,11 +8,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  grid: {
-    position: 'relative',
-  },
+
   paper: {
     padding: theme.spacing(2),
+    marginBottom: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
@@ -23,10 +22,52 @@ const title = (input) => {};
 const Day = ({ day, dayTasks }) => {
   const classes = useStyles();
 
+  const getTaskSlots = () => {
+    let taskSlotGrids = [];
+    for (let i = 0; i < dayTasks.tasks.length; i++) {
+      let task = dayTasks.tasks[i];
+      let marginDiff = i == 0 ? 0 : dayTasks.tasks[i - 1].end_time;
+
+      taskSlotGrids.push(
+        <Grid
+          className={classes.grid}
+          key={task.id}
+          style={{ marginTop: `${(task.start_time - marginDiff) * 3.72}rem` }}
+          item
+          xs
+        >
+          <Paper
+            className={classes.paper}
+            style={{ height: `${(task.end_time - task.start_time) * 3.5}rem` }}
+          >
+            <Typography gutterBottom>{task.type}</Typography>
+            {task.end_time - task.start_time >= 2 ? (
+              <>
+                <Typography gutterBottom variant='subtitle1'>
+                  {task.location}
+                </Typography>
+                <Typography gutterBottom variant='subtitle1'>
+                  {task.start_time} to {task.end_time}
+                </Typography>
+              </>
+            ) : null}
+          </Paper>
+        </Grid>
+      );
+    }
+    return taskSlotGrids;
+  };
+
   const taskSlot =
     dayTasks &&
     dayTasks.tasks.map((task) => (
-      <Grid className={classes.grid} key={task.id} citem xs>
+      <Grid
+        className={classes.grid}
+        key={task.id}
+        style={{ marginTop: `${task.start_time * 3.7}rem` }}
+        item
+        xs
+      >
         <Paper className={classes.paper}>
           <Typography gutterBottom>{task.type}</Typography>
           <Typography gutterBottom>day: {day}</Typography>
@@ -43,7 +84,8 @@ const Day = ({ day, dayTasks }) => {
   return (
     <Grid key={day} item xs>
       <Paper className={classes.paper}>{day}</Paper>
-      {taskSlot}
+      {/* {taskSlot} */}
+      {dayTasks && getTaskSlots()}
     </Grid>
   );
 };
