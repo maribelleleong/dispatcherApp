@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SimpleModal = ({ drivers, driver, selectedWeek }) => {
+const SimpleModal = ({ drivers, driver, selectedWeek, updateTasksList }) => {
   const [state, setState] = useState({
     driver,
     week: selectedWeek,
@@ -86,14 +86,23 @@ const SimpleModal = ({ drivers, driver, selectedWeek }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('hello frm handleSubmit');
 
     console.log(state);
 
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
     axios
-      .post('/tasks', state)
-      .then((res) => console.log(res))
+      .post('/tasks', JSON.stringify(state), config)
+      .then((res) => {
+        updateTasksList(res.data);
+      })
       .catch((err) => console.log(err));
+
+    setOpen(false);
   };
 
   const body = (

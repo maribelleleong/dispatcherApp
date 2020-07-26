@@ -19,7 +19,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Toolbar = ({ drivers, driver, setDriver, changeWeek, week }) => {
+const Toolbar = ({
+  drivers,
+  driver,
+  setDriver,
+  setWeek,
+  week,
+  updateTasksList,
+}) => {
   console.log('in Toolbar', driver);
   const classes = useStyles();
   return (
@@ -34,10 +41,15 @@ const Toolbar = ({ drivers, driver, setDriver, changeWeek, week }) => {
         driver={driver}
         setDriver={setDriver}
       />
-      <WeekSelection changeWeek={changeWeek} week={week} />
+      <WeekSelection setWeek={setWeek} week={week} />
       <Box display='flex'>
         <DownloadButton className={classes.addMargin} />
-        <SimpleModal drivers={drivers} driver={driver} selectedWeek={week} />
+        <SimpleModal
+          drivers={drivers}
+          driver={driver}
+          selectedWeek={week}
+          updateTasksList={updateTasksList}
+        />
       </Box>
     </Grid>
   );

@@ -5,6 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 const app = express();
 
 app.use(cors());
+app.use(express.json());
 
 // import data
 const { tasks_list } = require('./__fixture__/tasks_list');
@@ -19,16 +20,26 @@ app.get('/tasks', (req, res) => {
 
 app.post('/tasks', (req, res) => {
   console.log(req.body);
-  // const { name, day, week, startTime, endTime, jobType, location } = req.body;
-  // const newTask = {
-  //   id: uuidv4(),
-  //   type: jobType,
-  //   start_time: startTime,
-  //   end_time: endTime,
-  //   location,
-  // };
-  // tasks_list[name][week][day].tasks.push(newTask);
-  return res.status(204).json({});
+  const { driver, day, week, startTime, endTime, jobType, location } = req.body;
+  const newTask = {
+    id: uuidv4(),
+    type: jobType,
+    start_time: startTime,
+    end_time: endTime,
+    location,
+  };
+
+  if (!tasks_list[driver][week]) {
+    tasks_list[driver][week] = {};
+    tasks_list[driver][week][day] = {};
+    tasks_list[driver][week][day].tasks = [newTask];
+  } else if (!tasks_list[driver][week][day]) {
+    tasks_list[driver][week][day] = {};
+    tasks_list[driver][week][day].tasks = [newTask];
+  } else {
+    tasks_list[driver][week][day].tasks.push(newTask);
+  }
+  return res.status(204).json(tasks_list);
 
   // check if crash
   // if not, add

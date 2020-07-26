@@ -34,7 +34,7 @@ function App() {
   // useEffect(() =>{
   // },[state.week])
 
-  const changeWeek = (weekInput) => {
+  const setWeek = (weekInput) => {
     setState((prev) => ({
       ...prev,
       week: weekInput,
@@ -50,6 +50,13 @@ function App() {
     }));
   };
 
+  const updateTasksList = (newTasksList) => {
+    setState((prev) => ({
+      ...prev,
+      tasksList: newTasksList,
+    }));
+  };
+
   return (
     <Router>
       <Navbar />
@@ -57,8 +64,9 @@ function App() {
         drivers={state.drivers}
         driver={state.driver}
         setDriver={setDriver}
-        changeWeek={changeWeek}
+        setWeek={setWeek}
         week={state.week}
+        updateTasksList={updateTasksList}
       />
       <Schedule tasksOfWeek={state.tasksOfWeek} />
       <Switch>

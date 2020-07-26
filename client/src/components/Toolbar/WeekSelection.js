@@ -11,34 +11,43 @@ const useStyles = makeStyles({
   smallerWidth: {
     width: '50px',
   },
+  show: {
+    visibility: 'visible',
+  },
+  hide: {
+    visibility: 'hidden',
+  },
 });
 
-export const WeekSelection = ({ changeWeek, week }) => {
+export const WeekSelection = ({ setWeek, week }) => {
   const classes = useStyles();
 
   const changeInput = (event) => {
     console.log('change week', event.target.value);
-    changeWeek(event.target.value);
+    setWeek(event.target.value);
   };
 
   const changeWeekArrow = (type) => {
     console.log(week);
-    let weekchg = week;
+    let changedWeek = week;
     if (type == 'left') {
       if (week >= 1) {
-        weekchg -= 1;
+        changedWeek -= 1;
       }
     } else if (week < 52) {
-      weekchg += 1;
+      changedWeek = parseInt(changedWeek) + 1;
     }
 
-    changeWeek(weekchg);
+    setWeek(changedWeek);
   };
 
   return (
     <Box display='flex'>
       <Box alignSelf='center'>
-        <IconButton onClick={() => changeWeekArrow('left')}>
+        <IconButton
+          className={week > 1 ? classes.show : classes.hide}
+          onClick={() => changeWeekArrow('left')}
+        >
           <NavigateBeforeIcon />
         </IconButton>
       </Box>
@@ -59,7 +68,10 @@ export const WeekSelection = ({ changeWeek, week }) => {
       </Typography>
 
       <Box alignSelf='center'>
-        <IconButton onClick={() => changeWeekArrow('right')}>
+        <IconButton
+          className={week < 52 ? classes.show : classes.hide}
+          onClick={() => changeWeekArrow('right')}
+        >
           <NavigateNextIcon />
         </IconButton>
       </Box>
