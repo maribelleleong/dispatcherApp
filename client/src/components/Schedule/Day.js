@@ -2,6 +2,7 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -26,30 +27,59 @@ const Day = ({ day, dayTasks }) => {
       let task = dayTasks.tasks[i];
       let marginDiff = i == 0 ? 0 : dayTasks.tasks[i - 1].end_time;
 
+      const taskInfo = (
+        <>
+          <Typography>Type: {task.type}</Typography>
+          <Typography>
+            Time:{' '}
+            {task.start_time <= 9
+              ? `0${task.start_time}:00`
+              : `${task.start_time}:00`}{' '}
+            to{' '}
+            {task.end_time <= 9
+              ? `0${task.end_time}:00`
+              : `${task.end_time}:00`}
+          </Typography>
+          <Typography>
+            Location: {task.location ? task.location : 'No location given'}
+          </Typography>
+        </>
+      );
+      // Type: ${task.type}
+      // Time: ${task.start_time} to ${task.end_time}
+      // Location: ${task.location ? task.location : 'No location given'}
+
+      // `;
+
       taskSlotGrids.push(
         <Grid
+          onClick={() => console.log('Hello from grid')}
           className={classes.grid}
           key={task.id}
           style={{ marginTop: `${(task.start_time - marginDiff) * 3.72}rem` }}
           item
           xs
         >
-          <Paper
-            className={classes.paper}
-            style={{ height: `${(task.end_time - task.start_time) * 3.5}rem` }}
-          >
-            <Typography gutterBottom>{task.type}</Typography>
-            {task.end_time - task.start_time >= 2 ? (
-              <>
-                <Typography gutterBottom variant='subtitle1'>
-                  {task.location}
-                </Typography>
-                <Typography gutterBottom variant='subtitle1'>
-                  {task.start_time} to {task.end_time}
-                </Typography>
-              </>
-            ) : null}
-          </Paper>
+          <Tooltip title={taskInfo} placement='top-start'>
+            <Paper
+              className={classes.paper}
+              style={{
+                height: `${(task.end_time - task.start_time) * 3.5}rem`,
+              }}
+            >
+              <Typography gutterBottom>{task.type}</Typography>
+              {task.end_time - task.start_time >= 2 ? (
+                <>
+                  <Typography gutterBottom variant='subtitle1'>
+                    {task.location}
+                  </Typography>
+                  <Typography gutterBottom variant='subtitle1'>
+                    {task.start_time} to {task.end_time}
+                  </Typography>
+                </>
+              ) : null}
+            </Paper>
+          </Tooltip>
         </Grid>
       );
     }
