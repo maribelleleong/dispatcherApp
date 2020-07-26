@@ -33,7 +33,11 @@ const dayObj = {
 };
 
 const generateGrids = () => {
-  let generatedGrids = <Grid container spacing={1}></Grid>;
+  let generatedGrids;
+
+  for (let i = 0; i < 8; i++) {
+    for (let j = 0; j < 25; j++) {}
+  }
 };
 
 const Display = () => {

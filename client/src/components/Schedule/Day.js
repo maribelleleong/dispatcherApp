@@ -8,6 +8,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+  grid: {
+    position: 'relative',
+  },
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
@@ -23,7 +26,7 @@ const Day = ({ day, dayTasks }) => {
   const taskSlot =
     dayTasks &&
     dayTasks.tasks.map((task) => (
-      <Grid key={task.id} item spacing={1} xs>
+      <Grid className={classes.grid} key={task.id} citem xs>
         <Paper className={classes.paper}>
           <Typography gutterBottom>{task.type}</Typography>
           <Typography gutterBottom>day: {day}</Typography>
@@ -37,39 +40,11 @@ const Day = ({ day, dayTasks }) => {
       </Grid>
     ));
 
-  //   const x =
-  //     dayTasks.tasks &&
-  //     dayTasks.tasks.map((task) => (
-  //       <Grid key={task.id} item xs>
-  //         <Paper className={classes.paper}>
-  //           <Typography gutterBottom>{task.type}</Typography>
-  //           <Typography gutterBottom variant='subtitle1'>
-  //             {task.location}
-  //           </Typography>
-  //           <Typography gutterBottom variant='subtitle1'>
-  //             {task.start_time} to {task.end_time}
-  //           </Typography>
-  //         </Paper>
-  //       </Grid>
-  //     ));
-
   return (
-    <Grid key={day} item spacing={1}>
+    <Grid key={day} item xs>
       <Paper className={classes.paper}>{day}</Paper>
       {taskSlot}
     </Grid>
-    // <div>
-    //   <Grid
-    //     container
-    //     spacing={3}
-    //     justify='space-around'
-    //     alignItems='flex-start'
-    //   >
-    //     <Grid key={day} item xs>
-    //       <Paper className={classes.paper}>{day}</Paper>
-    //     </Grid>
-    //   </Grid>
-    // </div>
   );
 };
 

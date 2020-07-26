@@ -30,11 +30,7 @@ const Schedule = ({ tasksOfWeek }) => {
         <Grid item xs={11}>
           <Week tasksOfWeek={tasksOfWeek} />
         </Grid>
-        {/* <Grid item xs={11}> */}
-        {/* <DayList /> */}
-        {/* </Grid> */}
       </Grid>
-      {/* <DaySchedule dayTasks={tasksOfWeek['1']} /> */}
     </div>
   );
 };
