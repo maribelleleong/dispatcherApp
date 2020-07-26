@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
@@ -42,6 +44,7 @@ const SimpleModal = ({ drivers, driver, selectedWeek }) => {
   const [state, setState] = useState({
     driver,
     week: selectedWeek,
+    day: 1,
     startTime: 0,
     endTime: 1,
     location: '',
@@ -97,7 +100,7 @@ const SimpleModal = ({ drivers, driver, selectedWeek }) => {
         <TextField
           required
           className={`${classes.inputMargin} ${classes.smallerWidth}`}
-          id='standard-number'
+          id='week'
           label='Week'
           name='week'
           type='number'
@@ -106,6 +109,20 @@ const SimpleModal = ({ drivers, driver, selectedWeek }) => {
             shrink: true,
           }}
           value={state.week}
+          onChange={changeInput}
+        />
+        <TextField
+          required
+          className={`${classes.inputMargin} ${classes.smallerWidth}`}
+          id='day'
+          label='Day'
+          name='day'
+          type='number'
+          InputProps={{ inputProps: { min: 1, max: 7 } }}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          value={state.day}
           onChange={changeInput}
         />
         <br />
