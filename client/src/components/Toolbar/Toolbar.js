@@ -2,10 +2,26 @@ import React from 'react';
 import DriverSelection from './DriverSelection';
 import { WeekSelection } from './WeekSelection';
 import { DownloadButton } from './DownloadButton';
+import SimpleModal from './SimpleModal';
 
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    position: 'absolute',
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
+
 const Toolbar = ({ drivers, driver, setDriver, changeWeek, week }) => {
+  const classes = useStyles();
   return (
     <Grid
       container
@@ -19,7 +35,11 @@ const Toolbar = ({ drivers, driver, setDriver, changeWeek, week }) => {
         setDriver={setDriver}
       />
       <WeekSelection changeWeek={changeWeek} week={week} />
-      <DownloadButton />
+      <Box display='flex'>
+        <DownloadButton className={classes.addMargin} />
+        {/* {modalElement} */}
+        <SimpleModal />
+      </Box>
     </Grid>
   );
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-// import { MorphIcon } from 'react-svg-buttons';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -64,8 +63,6 @@ export const WeekSelection = ({ changeWeek, week }) => {
           <NavigateNextIcon />
         </IconButton>
       </Box>
-      {/* <MorphIcon type='arrowLeft' size={50} thickness={2} color='#dd6e78' /> */}
-      {/* <MorphIcon type='arrowRight' size={50} thickness={2} color='#dd6e78' /> */}
     </Box>
   );
 };
