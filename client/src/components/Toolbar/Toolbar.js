@@ -5,7 +5,6 @@ import { DownloadButton } from './DownloadButton';
 import SimpleModal from './SimpleModal';
 
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 
@@ -21,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Toolbar = ({ drivers, driver, setDriver, changeWeek, week }) => {
+  console.log('in Toolbar', driver);
   const classes = useStyles();
   return (
     <Grid
@@ -37,8 +37,7 @@ const Toolbar = ({ drivers, driver, setDriver, changeWeek, week }) => {
       <WeekSelection changeWeek={changeWeek} week={week} />
       <Box display='flex'>
         <DownloadButton className={classes.addMargin} />
-        {/* {modalElement} */}
-        <SimpleModal />
+        <SimpleModal drivers={drivers} driver={driver} selectedWeek={week} />
       </Box>
     </Grid>
   );

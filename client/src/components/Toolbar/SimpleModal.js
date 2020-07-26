@@ -1,12 +1,11 @@
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
-import React, { useState, useEffect } from 'react';
+import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
+const jobTypes = ['Drop Off', 'Pick Up', 'Other'];
 
 function getModalStyle() {
   const top = 50;
@@ -28,12 +27,32 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
+  smallerWidth: {
+    width: '6rem',
+  },
+  largerWidth: {
+    minWidth: '10rem',
+  },
+  inputMargin: {
+    margin: theme.spacing(2),
+  },
 }));
 
-const SimpleModal = () => {
-  const [state, setstate] = useState({
-    name: '',
+const SimpleModal = ({ drivers, driver, selectedWeek }) => {
+  const [state, setState] = useState({
+    driver,
+    week: selectedWeek,
+    startTime: 0,
+    endTime: 1,
+    location: '',
+    jobType: '',
   });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('hello frm handleSubmit');
+  };
+
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
@@ -46,36 +65,116 @@ const SimpleModal = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  const changeinput = (event) => {
-    let inputName = event.target.name;
-    let inputValue = event.target.value;
 
-    // switch(inputName){
-    //   case "name":
+  const changeInput = (e) => {
+    const inputName = e.target.name;
+    const inputValue = e.target.value;
 
-    //   break;
-    // }
-    setstate({
-      ...state,
-      [inputName]: inputValue,
-    });
+    setState((prev) => ({ ...prev, [inputName]: inputValue }));
   };
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2 id='simple-modal-title'>Text in a modal</h2>
-      <p id='simple-modal-description'>
-        {state.name}
+      <h2 id='simple-modal-title'>Task Form</h2>
+      <form className={classes.container} onSubmit={handleSubmit}>
         <TextField
           required
-          name='name'
-          id='filled-required'
-          label='Required'
-          defaultValue={state.name}
-          variant='filled'
-          onChange={changeinput}
+          id='driver'
+          select
+          label='Driver'
+          name='driver'
+          value={state.driver}
+          onChange={changeInput}
+          className={`${classes.inputMargin} ${classes.largerWidth}`}
+        >
+          {drivers.map((driver) => (
+            <MenuItem key={driver} value={driver}>
+              {driver}
+            </MenuItem>
+          ))}
+        </TextField>
+        <br />
+        <TextField
+          required
+          className={`${classes.inputMargin} ${classes.smallerWidth}`}
+          id='standard-number'
+          label='Week'
+          name='week'
+          type='number'
+          InputProps={{ inputProps: { min: 1, max: 52 } }}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          value={state.week}
+          onChange={changeInput}
         />
-      </p>
+        <br />
+        <TextField
+          required
+          className={`${classes.inputMargin} ${classes.smallerWidth}`}
+          defaultValue='0'
+          id='startTime'
+          name='startTime'
+          label='Start Time'
+          type='number'
+          InputProps={{ inputProps: { min: 0, max: 23 } }}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          value={state.startTime}
+          onChange={changeInput}
+        />
+        <TextField
+          required
+          className={`${classes.inputMargin} ${classes.smallerWidth}`}
+          defaultValue='1'
+          id='end-time'
+          name='endTime'
+          label='Start Time'
+          type='number'
+          InputProps={{ inputProps: { min: 1, max: 24 } }}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          value={state.endTime}
+          onChange={changeInput}
+        />
+        <br />
+        <TextField
+          required
+          id='job-type'
+          select
+          label='Job Type'
+          name='jobType'
+          value={state.jobType}
+          onChange={changeInput}
+          className={`${classes.inputMargin} ${classes.smallerWidth}`}
+        >
+          {jobTypes.map((option) => (
+            <MenuItem key={option} value={option}>
+              {option}
+            </MenuItem>
+          ))}
+        </TextField>
+        <br />
+        <TextField
+          required
+          name='location'
+          id='location'
+          label='Location'
+          onChange={changeInput}
+          className={classes.inputMargin}
+        />
+        <br />
+        <Button
+          color='primary'
+          variant='outlined'
+          className={classes.inputMargin}
+          type='submit'
+        >
+          Submit
+        </Button>
+      </form>
     </div>
   );
 
@@ -83,9 +182,8 @@ const SimpleModal = () => {
     <div>
       {/* <button type='button' onClick={handleOpen}> */}
       <Button variant='contained' color='primary' onClick={handleOpen}>
-        Open Modal
+        Create Task
       </Button>
-      {/* </button> */}
       <Modal
         open={open}
         onClose={handleClose}
