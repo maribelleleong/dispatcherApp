@@ -7,7 +7,17 @@ import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 
-const jobTypes = ['Drop Off', 'Pick Up', 'Other'];
+const jobTypes = ['Drop-Off', 'Pick-Up', 'Other'];
+
+const dayObj = {
+  Sunday: 1,
+  Monday: 2,
+  Tuesday: 3,
+  Wednesday: 4,
+  Thursday: 5,
+  Friday: 6,
+  Saturday: 7,
+};
 
 function getModalStyle() {
   const top = 50;
@@ -51,11 +61,6 @@ const SimpleModal = ({ drivers, driver, selectedWeek }) => {
     jobType: '',
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('hello frm handleSubmit');
-  };
-
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
@@ -73,7 +78,22 @@ const SimpleModal = ({ drivers, driver, selectedWeek }) => {
     const inputName = e.target.name;
     const inputValue = e.target.value;
 
+    console.log('inside changeInput');
+    console.log(inputName, inputValue);
+
     setState((prev) => ({ ...prev, [inputName]: inputValue }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('hello frm handleSubmit');
+
+    console.log(state);
+
+    axios
+      .post('/tasks', state)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
 
   const body = (
@@ -111,7 +131,7 @@ const SimpleModal = ({ drivers, driver, selectedWeek }) => {
           value={state.week}
           onChange={changeInput}
         />
-        <TextField
+        {/* <TextField
           required
           className={`${classes.inputMargin} ${classes.smallerWidth}`}
           id='day'
@@ -124,12 +144,27 @@ const SimpleModal = ({ drivers, driver, selectedWeek }) => {
           }}
           value={state.day}
           onChange={changeInput}
-        />
+        /> */}
+        <TextField
+          required
+          id='day'
+          select
+          label='Day'
+          name='day'
+          value={state.day}
+          onChange={changeInput}
+          className={`${classes.inputMargin} ${classes.largerWidth}`}
+        >
+          {Object.keys(dayObj).map((day) => (
+            <MenuItem key={day} value={dayObj[day]}>
+              {day}
+            </MenuItem>
+          ))}
+        </TextField>
         <br />
         <TextField
           required
           className={`${classes.inputMargin} ${classes.smallerWidth}`}
-          defaultValue='0'
           id='startTime'
           name='startTime'
           label='Start Time'
@@ -144,7 +179,6 @@ const SimpleModal = ({ drivers, driver, selectedWeek }) => {
         <TextField
           required
           className={`${classes.inputMargin} ${classes.smallerWidth}`}
-          defaultValue='1'
           id='end-time'
           name='endTime'
           label='Start Time'
