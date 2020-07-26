@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import DayList from './DayList';
 import TimeList from './TimeList';
+import DaySchedule from './DaySchedule';
+import Week from './Week';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Schedule = () => {
+const Schedule = ({ tasksOfWeek }) => {
   const classes = useStyles();
 
   return (
@@ -26,9 +28,13 @@ const Schedule = () => {
           <TimeList />
         </Grid>
         <Grid item xs={11}>
-          <DayList />
+          <Week tasksOfWeek={tasksOfWeek} />
         </Grid>
+        {/* <Grid item xs={11}> */}
+        {/* <DayList /> */}
+        {/* </Grid> */}
       </Grid>
+      {/* <DaySchedule dayTasks={tasksOfWeek['1']} /> */}
     </div>
   );
 };

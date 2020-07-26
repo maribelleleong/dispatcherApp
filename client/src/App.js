@@ -21,9 +21,6 @@ function App() {
   useEffect(() => {
     console.log('rawr from useEffect');
     axios.get('/tasks').then((res) => {
-      console.log(res.data);
-      console.log(Object.keys(res.data));
-
       setState((prev) => ({
         ...prev,
         tasksList: res.data,
@@ -31,13 +28,12 @@ function App() {
         drivers: Object.keys(res.data),
         driver: Object.keys(res.data)[0],
       }));
-
-      console.log(state.drivers);
     });
   }, []);
 
-  const setDriver = (name) => {
-    setState((prev) => ({ ...prev, driver: name }));
+  const setDriver = (event) => {
+    setState((prev) => ({ ...prev, driver: event.target.value }));
+    console.log(state.tasksOfWeek);
   };
 
   return (
@@ -48,7 +44,7 @@ function App() {
         driver={state.driver}
         setDriver={setDriver}
       />
-      <Schedule />
+      <Schedule tasksOfWeek={state.tasksOfWeek} />
       <Switch>
         <Route exact path='/login' component={Login} />
       </Switch>

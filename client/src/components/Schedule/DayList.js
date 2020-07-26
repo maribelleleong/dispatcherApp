@@ -24,16 +24,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DayList = () => {
+const DayList = ({ day, tasks }) => {
   const classes = useStyles();
 
   return (
-    <Grid container spacing={3} justify='space-around' alignItems='flex-start'>
-      {dayArr.map((value) => (
-        <Grid key={value} item xs>
-          <Paper className={classes.paper}>{value}</Paper>
-        </Grid>
-      ))}
+    <Grid
+      container
+      spacing={3}
+      direction='row'
+      justify='space-around'
+      alignItems='flex-start'
+    >
+      {dayArr &&
+        dayArr.map((value) => (
+          <Grid key={value} item xs>
+            <Paper className={classes.paper}>{value}</Paper>
+          </Grid>
+        ))}
     </Grid>
   );
 };

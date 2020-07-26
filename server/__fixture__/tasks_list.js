@@ -1,6 +1,6 @@
-const PICK_UP = 'pick-up';
-const DROP_OFF = 'drop-off';
-const OTHER = 'other';
+const PICK_UP = 'Pick-Up';
+const DROP_OFF = 'Drop-Off';
+const OTHER = 'Other';
 
 const tasks_list = {
   'Aaron Smith': {

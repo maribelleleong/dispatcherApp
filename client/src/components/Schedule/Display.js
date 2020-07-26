@@ -1,6 +1,7 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -8,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
@@ -21,21 +22,24 @@ const timeArr = () => {
   );
 };
 
-const TimeList = () => {
-  const classes = useStyles();
-
-  return (
-    <Grid container spacing={1} justify='flex-start' alignItems='flex-start'>
-      <Grid key={0} item xs>
-        <Paper className={classes.paper}>{'Time'}</Paper>
-      </Grid>
-      {timeArr().map((value) => (
-        <Grid key={value} item xs>
-          <Paper className={classes.paper}>{value}</Paper>
-        </Grid>
-      ))}
-    </Grid>
-  );
+const dayObj = {
+  Sunday: 1,
+  Monday: 2,
+  Tuesday: 3,
+  Wednesday: 4,
+  Thursday: 5,
+  Friday: 6,
+  Saturday: 7,
 };
 
-export default TimeList;
+const generateGrids = () => {
+  let generatedGrids = <Grid container spacing={1}></Grid>;
+};
+
+const Display = () => {
+  const classes = useStyles();
+
+  return <div></div>;
+};
+
+export default Display;

@@ -30,7 +30,7 @@ const DriverSelection = ({ drivers, driver, setDriver }) => {
           labelId='demo-simple-select-label'
           id='demo-simple-select'
           value={driver}
-          onChange={(event) => setDriver(event.target.value)}
+          onChange={setDriver}
         >
           {MenuItems}
         </Select>
