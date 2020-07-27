@@ -1,3 +1,5 @@
+// Material UI styles for Schedule Display
+
 const styles = (theme) => ({
   root: {
     flexGrow: 1,

@@ -1,3 +1,5 @@
+// Material UI styles for Toolbar Display
+
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
