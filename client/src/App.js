@@ -59,8 +59,6 @@ function App() {
   };
 
   const hasTaskConflict = (driver, week, day, startTime, endTime) => {
-    console.log('week', week);
-    console.log('day', day);
     const driverTaskList = state.tasksList[driver];
 
     if (!driverTaskList[week]) {

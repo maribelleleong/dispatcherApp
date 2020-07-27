@@ -352,9 +352,6 @@ const data = {
 const convert = (data) => {
   const result = {};
   for (let [driver, dataArr] of Object.entries(data)) {
-    // console.log(driver);
-    // console.log(dataArr);
-
     result[driver] = {};
 
     dataArr.forEach((obj) => {

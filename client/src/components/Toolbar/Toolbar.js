@@ -2,7 +2,7 @@ import React from 'react';
 import DriverSelection from './DriverSelection';
 import WeekSelection from './WeekSelection';
 import DownloadButton from './DownloadButton';
-import FormModal from './FormModal';
+import NewTaskForm from './NewTaskForm';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
@@ -45,7 +45,7 @@ const Toolbar = ({
       <WeekSelection setWeek={setWeek} week={week} />
       <Box display='flex'>
         <DownloadButton className={classes.addMargin} />
-        <FormModal
+        <NewTaskForm
           drivers={drivers}
           driver={driver}
           selectedWeek={week}

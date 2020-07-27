@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const FormModal = ({
+const NewTaskForm = ({
   drivers,
   driver,
   selectedWeek,
@@ -285,4 +285,4 @@ const FormModal = ({
   );
 };
 
-export default FormModal;
+export default NewTaskForm;

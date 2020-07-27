@@ -23,12 +23,10 @@ const WeekSelection = ({ setWeek, week }) => {
   const classes = useStyles();
 
   const changeInput = (event) => {
-    console.log('change week', event.target.value);
     setWeek(event.target.value);
   };
 
   const changeWeekArrow = (type) => {
-    console.log(week);
     let changedWeek = week;
     if (type === 'left') {
       if (week >= 1) {
@@ -55,7 +53,7 @@ const WeekSelection = ({ setWeek, week }) => {
         Week{' '}
         <TextField
           className={classes.smallerWidth}
-          defaultValue='1'
+          defaultValue={week}
           id='standard-number'
           type='number'
           InputProps={{ inputProps: { min: 1, max: 52 } }}
