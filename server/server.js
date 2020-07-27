@@ -37,12 +37,9 @@ app.post('/tasks', (req, res) => {
     driverTaskList[week][day] = {};
     driverTaskList[week][day].tasks = [newTask];
   } else {
-    //check conflict, remove the conflicting tasks
-    const cleanedList = driverTaskList[week][day].tasks.filter((task) => {
-      !(startTime >= task.start_time && startTime < task.end_time) &&
-        !(endTime > task.start_time && endTime <= task.end_time) &&
-        !(startTime <= task.start_time && endTime >= task.end_time);
-    });
+    const cleanedList = driverTaskList[week][day].tasks.filter(
+      (task) => !checkConflict(task, startTime, endTime)
+    );
 
     // update the tasks with cleanedList and newTask
     driverTaskList[week][day].tasks = [...cleanedList, newTask];
@@ -51,6 +48,21 @@ app.post('/tasks', (req, res) => {
   res.status(200).json(tasks_list);
 });
 
+const checkConflict = (task, startTime, endTime) => {
+  let checking = false;
+  if (startTime >= task.start_time && startTime < task.end_time) {
+    checking = true;
+  }
+
+  if (endTime > task.start_time && endTime <= task.end_time) {
+    checking = true;
+  }
+
+  if (startTime <= task.start_time && endTime >= task.end_time) {
+    checking = true;
+  }
+  return checking;
+};
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

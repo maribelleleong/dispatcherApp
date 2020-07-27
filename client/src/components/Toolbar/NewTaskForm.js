@@ -109,25 +109,34 @@ const NewTaskForm = ({
     }
   };
 
+  const handleCancel = () => {
+    setError(false);
+    reset();
+  };
+
   const submitPostRequest = async () => {
     const res = await axios.post('/tasks', state);
 
     if (res.status === 200) {
       updateTasksList(res.data);
-      setState((prev) => ({
-        ...prev,
-        driver: '',
-        week: 1,
-        day: 1,
-        startTime: 0,
-        endTime: 1,
-        location: '',
-        jobType: '',
-      }));
+      reset();
       return Promise.resolve();
     } else {
     }
     return Promise.reject(new Error('Problem submitting request'));
+  };
+
+  const reset = () => {
+    setState((prev) => ({
+      ...prev,
+      driver: '',
+      week: 1,
+      day: 1,
+      startTime: 0,
+      endTime: 1,
+      location: '',
+      jobType: '',
+    }));
   };
 
   const body = (
@@ -235,6 +244,7 @@ const NewTaskForm = ({
           label='Location'
           onChange={changeInput}
           className={classes.inputMargin}
+          value={state.location}
         />
         <br />
         {!error && (
@@ -260,6 +270,13 @@ const NewTaskForm = ({
               onClick={handleOverwrite}
             >
               Overwrite
+            </Button>
+            <Button
+              variant='outlined'
+              className={classes.inputMargin}
+              onClick={handleCancel}
+            >
+              Cancel
             </Button>
           </>
         )}

@@ -16,10 +16,30 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+  blue: {
+    backgroundColor: '#CCF0F8',
+  },
+  yellow: {
+    background: '#FDF57B',
+  },
+  green: {
+    background: '#A9FFEB',
+  },
 }));
 
 const Day = ({ day, dayTasks }) => {
   const classes = useStyles();
+
+  const getColor = (task) => {
+    if (task === 'Drop-Off') {
+      return classes.blue;
+    }
+    if (task === 'Other') {
+      return classes.yellow;
+    } else {
+      return classes.green;
+    }
+  };
 
   const getTaskSlots = () => {
     let taskSlotGrids = [];
@@ -57,7 +77,7 @@ const Day = ({ day, dayTasks }) => {
         >
           <Tooltip title={taskInfo} placement='top-start'>
             <Paper
-              className={classes.paper}
+              className={`${classes.paper} ${getColor(task.type)}`}
               style={{
                 height: `${(task.end_time - task.start_time) * 3.5}rem`,
               }}
