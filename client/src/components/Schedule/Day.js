@@ -25,7 +25,7 @@ const Day = ({ day, dayTasks }) => {
     let taskSlotGrids = [];
     for (let i = 0; i < dayTasks.tasks.length; i++) {
       let task = dayTasks.tasks[i];
-      let marginDiff = i == 0 ? 0 : dayTasks.tasks[i - 1].end_time;
+      let marginDiff = i === 0 ? 0 : dayTasks.tasks[i - 1].end_time;
 
       const taskInfo = (
         <>
@@ -45,11 +45,6 @@ const Day = ({ day, dayTasks }) => {
           </Typography>
         </>
       );
-      // Type: ${task.type}
-      // Time: ${task.start_time} to ${task.end_time}
-      // Location: ${task.location ? task.location : 'No location given'}
-
-      // `;
 
       taskSlotGrids.push(
         <Grid
@@ -90,7 +85,6 @@ const Day = ({ day, dayTasks }) => {
     <Grid key={day} item xs>
       <Paper className={classes.paper}>{day}</Paper>
       {dayTasks ? getTaskSlots() : null}
-      {dayTasks && console.log(dayTasks)}
     </Grid>
   );
 };

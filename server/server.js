@@ -19,7 +19,6 @@ app.get('/tasks', (req, res) => {
 });
 
 app.post('/tasks', (req, res) => {
-  console.log(req.body);
   const { driver, day, week, startTime, endTime, jobType, location } = req.body;
   const newTask = {
     id: uuidv4(),
@@ -39,7 +38,8 @@ app.post('/tasks', (req, res) => {
   } else {
     tasks_list[driver][week][day].tasks.push(newTask);
   }
-  return res.status(204).json(tasks_list);
+
+  res.status(200).json(tasks_list);
 
   // check if crash
   // if not, add

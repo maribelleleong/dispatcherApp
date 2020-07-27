@@ -1,8 +1,8 @@
 import React from 'react';
 import DriverSelection from './DriverSelection';
-import { WeekSelection } from './WeekSelection';
-import { DownloadButton } from './DownloadButton';
-import SimpleModal from './SimpleModal';
+import WeekSelection from './WeekSelection';
+import DownloadButton from './DownloadButton';
+import FormModal from './FormModal';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
@@ -27,8 +27,8 @@ const Toolbar = ({
   week,
   updateTasksList,
 }) => {
-  console.log('in Toolbar', driver);
   const classes = useStyles();
+
   return (
     <Grid
       container
@@ -44,7 +44,7 @@ const Toolbar = ({
       <WeekSelection setWeek={setWeek} week={week} />
       <Box display='flex'>
         <DownloadButton className={classes.addMargin} />
-        <SimpleModal
+        <FormModal
           drivers={drivers}
           driver={driver}
           selectedWeek={week}

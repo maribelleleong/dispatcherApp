@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   addMargin: { marginRight: theme.spacing(1) },
 }));
 
-export const DownloadButton = () => {
+const DownloadButton = () => {
   const classes = useStyles();
 
   return (
@@ -22,3 +22,5 @@ export const DownloadButton = () => {
     </Box>
   );
 };
+
+export default DownloadButton;

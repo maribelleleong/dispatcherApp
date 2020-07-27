@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SimpleModal = ({ drivers, driver, selectedWeek, updateTasksList }) => {
+const FormModal = ({ drivers, driver, selectedWeek, updateTasksList }) => {
   const [state, setState] = useState({
     driver,
     week: selectedWeek,
@@ -78,30 +78,29 @@ const SimpleModal = ({ drivers, driver, selectedWeek, updateTasksList }) => {
     const inputName = e.target.name;
     const inputValue = e.target.value;
 
-    console.log('inside changeInput');
-    console.log(inputName, inputValue);
-
     setState((prev) => ({ ...prev, [inputName]: inputValue }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(state);
+    const res = await axios.post('/tasks', state);
 
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
+    if (res.status === 200) {
+      updateTasksList(res.data);
+    } else {
+    }
 
-    axios
-      .post('/tasks', JSON.stringify(state), config)
-      .then((res) => {
-        updateTasksList(res.data);
-      })
-      .catch((err) => console.log(err));
-
+    setState((prev) => ({
+      ...prev,
+      driver: '',
+      week: 1,
+      day: 1,
+      startTime: 0,
+      endTime: 1,
+      location: '',
+      jobType: '',
+    }));
     setOpen(false);
   };
 
@@ -256,4 +255,4 @@ const SimpleModal = ({ drivers, driver, selectedWeek, updateTasksList }) => {
   );
 };
 
-export default SimpleModal;
+export default FormModal;

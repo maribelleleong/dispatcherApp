@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Schedule = ({ tasksOfWeek }) => {
   const classes = useStyles();
-  console.log('schedule', tasksOfWeek);
   return (
     <div className={classes.root}>
       <Grid container spacing={1}>

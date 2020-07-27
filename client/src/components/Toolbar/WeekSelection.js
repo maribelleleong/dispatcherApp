@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const WeekSelection = ({ setWeek, week }) => {
+const WeekSelection = ({ setWeek, week }) => {
   const classes = useStyles();
 
   const changeInput = (event) => {
@@ -30,7 +30,7 @@ export const WeekSelection = ({ setWeek, week }) => {
   const changeWeekArrow = (type) => {
     console.log(week);
     let changedWeek = week;
-    if (type == 'left') {
+    if (type === 'left') {
       if (week >= 1) {
         changedWeek -= 1;
       }
@@ -78,3 +78,5 @@ export const WeekSelection = ({ setWeek, week }) => {
     </Box>
   );
 };
+
+export default WeekSelection;

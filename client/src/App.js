@@ -53,6 +53,7 @@ function App() {
   const updateTasksList = (newTasksList) => {
     setState((prev) => ({
       ...prev,
+      tasksOfWeek: newTasksList[prev.driver][prev.week],
       tasksList: newTasksList,
     }));
   };
