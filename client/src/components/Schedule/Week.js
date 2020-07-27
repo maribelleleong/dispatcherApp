@@ -1,17 +1,8 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-
 import Day from './Day';
+import { dayObj } from '../../helpers/constantObj';
 
-const dayObj = {
-  Sunday: 1,
-  Monday: 2,
-  Tuesday: 3,
-  Wednesday: 4,
-  Thursday: 5,
-  Friday: 6,
-  Saturday: 7,
-};
+import Grid from '@material-ui/core/Grid';
 
 const Week = ({ tasksOfWeek }) => {
   return (

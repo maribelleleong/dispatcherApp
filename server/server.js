@@ -28,15 +28,24 @@ app.post('/tasks', (req, res) => {
     location,
   };
 
-  if (!tasks_list[driver][week]) {
-    tasks_list[driver][week] = {};
-    tasks_list[driver][week][day] = {};
-    tasks_list[driver][week][day].tasks = [newTask];
-  } else if (!tasks_list[driver][week][day]) {
-    tasks_list[driver][week][day] = {};
-    tasks_list[driver][week][day].tasks = [newTask];
+  const driverTaskList = tasks_list[driver];
+  if (!driverTaskList[week]) {
+    driverTaskList[week] = {};
+    driverTaskList[week][day] = {};
+    driverTaskList[week][day].tasks = [newTask];
+  } else if (!driverTaskList[week][day]) {
+    driverTaskList[week][day] = {};
+    driverTaskList[week][day].tasks = [newTask];
   } else {
-    tasks_list[driver][week][day].tasks.push(newTask);
+    //check conflict, remove the conflicting tasks
+    const cleanedList = driverTaskList[week][day].tasks.filter((task) => {
+      !(startTime >= task.start_time && startTime < task.end_time) &&
+        !(endTime > task.start_time && endTime <= task.end_time) &&
+        !(startTime <= task.start_time && endTime >= task.end_time);
+    });
+
+    // update the tasks with cleanedList and newTask
+    driverTaskList[week][day].tasks = [...cleanedList, newTask];
   }
 
   res.status(200).json(tasks_list);

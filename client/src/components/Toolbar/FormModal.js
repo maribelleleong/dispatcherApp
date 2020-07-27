@@ -4,29 +4,17 @@ import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 
-const jobTypes = ['Drop-Off', 'Pick-Up', 'Other'];
-
-const dayObj = {
-  Sunday: 1,
-  Monday: 2,
-  Tuesday: 3,
-  Wednesday: 4,
-  Thursday: 5,
-  Friday: 6,
-  Saturday: 7,
-};
+import { dayObj, jobTypes } from '../../helpers/constantObj';
 
 function getModalStyle() {
-  const top = 50;
-  const left = 50;
-
   return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
+    top: `50%`,
+    left: `50%`,
+    transform: `translate(-50%, -50%)`,
   };
 }
 
@@ -66,11 +54,12 @@ const FormModal = ({
     location: '',
     jobType: '',
   });
+  const [error, setError] = useState(false);
 
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
-  const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(false);
+  const [modalStyle] = useState(getModalStyle);
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -99,26 +88,46 @@ const FormModal = ({
         state.endTime
       )
     ) {
-      console.log('bad time');
+      setError(true);
     } else {
-      const res = await axios.post('/tasks', state);
-
-      if (res.status === 200) {
-        updateTasksList(res.data);
-        setState((prev) => ({
-          ...prev,
-          driver: '',
-          week: 1,
-          day: 1,
-          startTime: 0,
-          endTime: 1,
-          location: '',
-          jobType: '',
-        }));
+      try {
+        await submitPostRequest();
         setOpen(false);
-      } else {
+      } catch (err) {
+        console.log(err);
       }
     }
+  };
+
+  const handleOverwrite = async () => {
+    try {
+      await submitPostRequest();
+      setError(false);
+      setOpen(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const submitPostRequest = async () => {
+    const res = await axios.post('/tasks', state);
+
+    if (res.status === 200) {
+      updateTasksList(res.data);
+      setState((prev) => ({
+        ...prev,
+        driver: '',
+        week: 1,
+        day: 1,
+        startTime: 0,
+        endTime: 1,
+        location: '',
+        jobType: '',
+      }));
+      return Promise.resolve();
+    } else {
+    }
+    return Promise.reject(new Error('Problem submitting request'));
   };
 
   const body = (
@@ -228,14 +237,32 @@ const FormModal = ({
           className={classes.inputMargin}
         />
         <br />
-        <Button
-          color='primary'
-          variant='outlined'
-          className={classes.inputMargin}
-          type='submit'
-        >
-          Submit
-        </Button>
+        {!error && (
+          <Button
+            color='primary'
+            variant='outlined'
+            className={classes.inputMargin}
+            type='submit'
+          >
+            Submit
+          </Button>
+        )}
+        {error && (
+          <>
+            <Typography className={classes.inputMargin}>
+              New task has time conflicts with existing task(s). Would you like
+              to overwrite?{' '}
+            </Typography>
+            <Button
+              color='primary'
+              variant='outlined'
+              className={classes.inputMargin}
+              onClick={handleOverwrite}
+            >
+              Overwrite
+            </Button>
+          </>
+        )}
       </form>
     </div>
   );

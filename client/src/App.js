@@ -63,37 +63,28 @@ function App() {
     console.log('day', day);
     const driverTaskList = state.tasksList[driver];
 
-    console.log(driverTaskList);
-
     if (!driverTaskList[week]) {
-      console.log('Here 5');
       return true;
     }
     if (!driverTaskList[week][day]) {
-      console.log('Here 3');
       return true;
     }
 
     if (!driverTaskList[week][day].tasks) {
-      console.log('Here 4');
       return true;
     }
 
     let checking = false;
     driverTaskList[week][day].tasks.forEach((task) => {
       if (startTime >= task.start_time && startTime < task.end_time) {
-        console.log('Here 1');
         checking = true;
       }
 
       if (endTime > task.start_time && endTime <= task.end_time) {
-        console.log('Here 2');
         checking = true;
       }
-      console.log('ellloooooooo in if');
 
       if (startTime <= task.start_time && endTime >= task.end_time) {
-        console.log('Here 6');
         checking = true;
       }
     });
