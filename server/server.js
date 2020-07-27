@@ -1,6 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const { v4: uuidv4 } = require('uuid');
+const { checkConflict } = require('./helpers/checkConflict');
+
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 
@@ -47,22 +50,5 @@ app.post('/tasks', (req, res) => {
 
   res.status(200).json(tasks_list);
 });
-
-const checkConflict = (task, startTime, endTime) => {
-  let checking = false;
-  if (startTime >= task.start_time && startTime < task.end_time) {
-    checking = true;
-  }
-
-  if (endTime > task.start_time && endTime <= task.end_time) {
-    checking = true;
-  }
-
-  if (startTime <= task.start_time && endTime >= task.end_time) {
-    checking = true;
-  }
-  return checking;
-};
-const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
