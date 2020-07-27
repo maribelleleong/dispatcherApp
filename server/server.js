@@ -19,12 +19,12 @@ app.get('/tasks', (req, res) => {
 });
 
 app.post('/tasks', (req, res) => {
-  const { driver, day, week, startTime, endTime, jobType, location } = req.body;
+  const { driver, day, week, startTime, endTime, type, location } = req.body;
   const newTask = {
     id: uuidv4(),
-    type: jobType,
     start_time: startTime,
     end_time: endTime,
+    type,
     location,
   };
 

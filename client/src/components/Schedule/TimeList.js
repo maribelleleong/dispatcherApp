@@ -1,17 +1,11 @@
 import React from 'react';
+import styles from './styles';
+
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-  },
-}));
+const useStyles = makeStyles(styles);
 
 // generate ['00:00' .. '23:00']
 const timeArr = () => {

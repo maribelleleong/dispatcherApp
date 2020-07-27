@@ -2,22 +2,14 @@ import React from 'react';
 import DriverSelection from './DriverSelection';
 import WeekSelection from './WeekSelection';
 import DownloadButton from './DownloadButton';
-import NewTaskForm from './NewTaskForm';
+import NewTaskButton from './NewTaskButton';
+import styles from './styles';
 
-import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    position: 'absolute',
-    width: 400,
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-}));
+const useStyles = makeStyles(styles);
 
 const Toolbar = ({
   drivers,
@@ -45,7 +37,7 @@ const Toolbar = ({
       <WeekSelection setWeek={setWeek} week={week} />
       <Box display='flex'>
         <DownloadButton className={classes.addMargin} />
-        <NewTaskForm
+        <NewTaskButton
           drivers={drivers}
           driver={driver}
           selectedWeek={week}

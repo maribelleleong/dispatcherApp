@@ -31,9 +31,6 @@ function App() {
     });
   }, []);
 
-  // useEffect(() =>{
-  // },[state.week])
-
   const setWeek = (weekInput) => {
     setState((prev) => ({
       ...prev,
@@ -58,7 +55,15 @@ function App() {
     }));
   };
 
-  const hasTaskConflict = (driver, week, day, startTime, endTime) => {
+  const hasTaskConflict = (
+    driver,
+    week,
+    day,
+    startTime,
+    endTime,
+    update,
+    id = 0
+  ) => {
     const driverTaskList = state.tasksList[driver];
 
     if (!driverTaskList[week]) {
@@ -85,6 +90,16 @@ function App() {
       if (startTime <= task.start_time && endTime >= task.end_time) {
         checking = true;
       }
+
+      console.log('id: ', id);
+      console.log('task_id: ', task.id);
+      if (id === task.id) {
+        console.log('same id aye');
+      }
+
+      if (update && id === task.id && checking) {
+        checking = false;
+      }
     });
     return checking;
   };
@@ -101,7 +116,13 @@ function App() {
         updateTasksList={updateTasksList}
         hasTaskConflict={hasTaskConflict}
       />
-      <Schedule tasksOfWeek={state.tasksOfWeek} />
+      <Schedule
+        tasksOfWeek={state.tasksOfWeek}
+        driver={state.driver}
+        week={state.week}
+        updateTasksList={updateTasksList}
+        hasTaskConflict={hasTaskConflict}
+      />
       <Switch>
         <Route exact path='/login' component={Login} />
       </Switch>

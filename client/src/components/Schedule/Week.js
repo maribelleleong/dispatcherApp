@@ -4,7 +4,13 @@ import { dayObj } from '../../helpers/constantObj';
 
 import Grid from '@material-ui/core/Grid';
 
-const Week = ({ tasksOfWeek }) => {
+const Week = ({
+  tasksOfWeek,
+  driver,
+  week,
+  updateTasksList,
+  hasTaskConflict,
+}) => {
   return (
     <Grid container spacing={1} justify='space-around' alignItems='flex-start'>
       {dayObj &&
@@ -12,7 +18,12 @@ const Week = ({ tasksOfWeek }) => {
           <Day
             key={day}
             day={day}
+            dayNum={dayObj[day]}
             dayTasks={tasksOfWeek ? tasksOfWeek[dayObj[day]] : null}
+            driver={driver}
+            week={week}
+            updateTasksList={updateTasksList}
+            hasTaskConflict={hasTaskConflict}
           />
         ))}
     </Grid>

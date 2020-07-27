@@ -1,0 +1,129 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+import Modal from '@material-ui/core/Modal';
+
+import UpdateForm from './UpdateForm';
+
+const UpdateModal = ({
+  open,
+  handleClose,
+  driver,
+  week,
+  day,
+  task,
+  updateTasksList,
+  hasTaskConflict,
+}) => {
+  const [state, setState] = useState({
+    driver,
+    week,
+    day,
+    startTime: task.start_time,
+    endTime: task.end_time,
+    type: task.type,
+    location: task.location,
+  });
+  const [error, setError] = useState(false);
+
+  const changeInput = (e) => {
+    const inputName = e.target.name;
+    const inputValue = e.target.value;
+
+    setState((prev) => ({ ...prev, [inputName]: inputValue }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log('ello you submit');
+    if (
+      hasTaskConflict(
+        state.driver,
+        state.week,
+        state.day,
+        state.startTime,
+        state.endTime,
+        true,
+        task.id
+      )
+    ) {
+      setError(true);
+      console.log('conflicted!!');
+    } else {
+      try {
+        await submitPostRequest();
+        handleClose();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
+  const handleReplace = async () => {
+    try {
+      await submitPostRequest();
+      setError(false);
+      handleClose();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleCancel = () => {
+    setError(false);
+    reset();
+  };
+
+  const submitPostRequest = async () => {
+    const res = await axios.post('/tasks', state);
+
+    if (res.status === 200) {
+      updateTasksList(res.data);
+      reset();
+      return Promise.resolve();
+    } else {
+    }
+    return Promise.reject(new Error('Problem submitting request'));
+  };
+
+  const reset = () => {
+    setState((prev) => ({
+      ...prev,
+      driver,
+      week,
+      day,
+      startTime: task.start_time,
+      endTime: task.end_time,
+      type: task.type,
+      location: task.location,
+    }));
+  };
+
+  const body = (
+    <UpdateForm
+      {...{
+        changeInput,
+        handleSubmit,
+        handleReplace,
+        handleCancel,
+        driver,
+        state,
+        error,
+      }}
+    />
+  );
+
+  return (
+    <div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby='simple-modal-title'
+        aria-describedby='simple-modal-description'
+      >
+        {body}
+      </Modal>
+    </div>
+  );
+};
+
+export default UpdateModal;

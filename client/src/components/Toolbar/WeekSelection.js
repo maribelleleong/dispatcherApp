@@ -1,4 +1,6 @@
 import React from 'react';
+import styles from './styles';
+
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -7,17 +9,7 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
-  smallerWidth: {
-    width: '50px',
-  },
-  show: {
-    visibility: 'visible',
-  },
-  hide: {
-    visibility: 'hidden',
-  },
-});
+const useStyles = makeStyles(styles);
 
 const WeekSelection = ({ setWeek, week }) => {
   const classes = useStyles();

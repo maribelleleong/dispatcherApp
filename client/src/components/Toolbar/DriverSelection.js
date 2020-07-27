@@ -1,20 +1,15 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import styles from './styles';
+
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(styles);
 
 const DriverSelection = ({ drivers, driver, setDriver }) => {
-  const useStyles = makeStyles((theme) => ({
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120,
-    },
-    selectEmpty: {
-      marginTop: theme.spacing(2),
-    },
-  }));
   const classes = useStyles();
 
   const MenuItems = drivers.map((driver) => (

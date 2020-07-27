@@ -2,22 +2,22 @@ import React from 'react';
 import TimeList from './TimeList';
 import Week from './Week';
 
+import styles from './styles';
+
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
-}));
+const useStyles = makeStyles(styles);
 
-const Schedule = ({ tasksOfWeek }) => {
+const Schedule = ({
+  tasksOfWeek,
+  driver,
+  week,
+  updateTasksList,
+  hasTaskConflict,
+}) => {
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <Grid container spacing={1}>
@@ -25,7 +25,10 @@ const Schedule = ({ tasksOfWeek }) => {
           <TimeList />
         </Grid>
         <Grid item xs={11}>
-          <Week tasksOfWeek={tasksOfWeek} />
+          {/* <Week tasksOfWeek={tasksOfWeek} driver={driver} week={week} hasTaskConflict={hasTaskConflict}/> */}
+          <Week
+            {...{ tasksOfWeek, driver, week, updateTasksList, hasTaskConflict }}
+          />
         </Grid>
       </Grid>
     </div>

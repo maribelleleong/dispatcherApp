@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import styles from './styles';
 
-import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
 
 import { dayObj, jobTypes } from '../../helpers/constantObj';
 
@@ -18,27 +19,9 @@ function getModalStyle() {
   };
 }
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    position: 'absolute',
-    width: 400,
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-  smallerWidth: {
-    width: '6rem',
-  },
-  largerWidth: {
-    minWidth: '10rem',
-  },
-  inputMargin: {
-    margin: theme.spacing(2),
-  },
-}));
+const useStyles = makeStyles(styles);
 
-const NewTaskForm = ({
+const NewTaskButton = ({
   drivers,
   driver,
   selectedWeek,
@@ -52,7 +35,7 @@ const NewTaskForm = ({
     startTime: 0,
     endTime: 1,
     location: '',
-    jobType: '',
+    type: '',
   });
   const [error, setError] = useState(false);
 
@@ -85,7 +68,8 @@ const NewTaskForm = ({
         state.week,
         state.day,
         state.startTime,
-        state.endTime
+        state.endTime,
+        false
       )
     ) {
       setError(true);
@@ -135,14 +119,16 @@ const NewTaskForm = ({
       startTime: 0,
       endTime: 1,
       location: '',
-      jobType: '',
+      type: '',
     }));
   };
 
   const body = (
-    <div style={modalStyle} className={classes.paper}>
-      <h2 id='simple-modal-title'>Task Form</h2>
-      <form className={classes.container} onSubmit={handleSubmit}>
+    <div style={modalStyle} className={classes.formPaper}>
+      <h2 className={classes.titleMargin} id='simple-modal-title'>
+        Create Task Form
+      </h2>
+      <form onSubmit={handleSubmit}>
         <TextField
           required
           id='driver'
@@ -225,8 +211,8 @@ const NewTaskForm = ({
           id='job-type'
           select
           label='Job Type'
-          name='jobType'
-          value={state.jobType}
+          name='type'
+          value={state.type}
           onChange={changeInput}
           className={`${classes.inputMargin} ${classes.smallerWidth}`}
         >
@@ -286,7 +272,6 @@ const NewTaskForm = ({
 
   return (
     <div>
-      {/* <button type='button' onClick={handleOpen}> */}
       <Button variant='contained' color='primary' onClick={handleOpen}>
         Create Task
       </Button>
@@ -302,4 +287,4 @@ const NewTaskForm = ({
   );
 };
 
-export default NewTaskForm;
+export default NewTaskButton;
