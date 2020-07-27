@@ -28,6 +28,13 @@ const styles = (theme) => ({
   inputMargin: {
     margin: theme.spacing(2),
   },
+  buttonMargin: {
+    marginBottom: theme.spacing(1),
+  },
+  toolbarMargin: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
   addMargin: { marginRight: theme.spacing(1) },
   show: {
     visibility: 'visible',

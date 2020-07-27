@@ -28,6 +28,7 @@ const Toolbar = ({
       direction='row'
       alignItems='flex-end'
       justify='space-between'
+      className={classes.toolbarMargin}
     >
       <DriverSelection
         drivers={drivers}
@@ -35,7 +36,7 @@ const Toolbar = ({
         setDriver={setDriver}
       />
       <WeekSelection setWeek={setWeek} week={week} />
-      <Box display='flex'>
+      <Box display='flex' className={classes.buttonMargin}>
         <DownloadButton className={classes.addMargin} />
         <NewTaskButton
           drivers={drivers}
