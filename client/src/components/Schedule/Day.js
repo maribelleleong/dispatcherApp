@@ -69,7 +69,13 @@ const Day = ({ day, dayTasks }) => {
                     {task.location}
                   </Typography>
                   <Typography gutterBottom variant='subtitle1'>
-                    {task.start_time} to {task.end_time}
+                    {task.start_time <= 9
+                      ? `0${task.start_time}:00`
+                      : `${task.start_time}:00`}{' '}
+                    to{' '}
+                    {task.end_time <= 9
+                      ? `0${task.end_time}:00`
+                      : `${task.end_time}:00`}
                   </Typography>
                 </>
               ) : null}

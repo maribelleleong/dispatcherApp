@@ -40,18 +40,6 @@ app.post('/tasks', (req, res) => {
   }
 
   res.status(200).json(tasks_list);
-
-  // check if crash
-  // if not, add
-  // else throw err
-
-  // if(validToAddTask()){
-
-  // }else{
-  //   res.
-  // }
-
-  // res.json(tasks_list);
 });
 
 const PORT = process.env.PORT || 5000;

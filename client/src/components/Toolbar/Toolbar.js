@@ -25,6 +25,7 @@ const Toolbar = ({
   setDriver,
   setWeek,
   week,
+  hasTaskConflict,
   updateTasksList,
 }) => {
   const classes = useStyles();
@@ -49,6 +50,7 @@ const Toolbar = ({
           driver={driver}
           selectedWeek={week}
           updateTasksList={updateTasksList}
+          hasTaskConflict={hasTaskConflict}
         />
       </Box>
     </Grid>

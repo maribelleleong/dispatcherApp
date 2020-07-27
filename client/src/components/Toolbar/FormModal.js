@@ -50,7 +50,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const FormModal = ({ drivers, driver, selectedWeek, updateTasksList }) => {
+const FormModal = ({
+  drivers,
+  driver,
+  selectedWeek,
+  hasTaskConflict,
+  updateTasksList,
+}) => {
   const [state, setState] = useState({
     driver,
     week: selectedWeek,
@@ -84,24 +90,35 @@ const FormModal = ({ drivers, driver, selectedWeek, updateTasksList }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await axios.post('/tasks', state);
-
-    if (res.status === 200) {
-      updateTasksList(res.data);
+    if (
+      hasTaskConflict(
+        state.driver,
+        state.week,
+        state.day,
+        state.startTime,
+        state.endTime
+      )
+    ) {
+      console.log('bad time');
     } else {
-    }
+      const res = await axios.post('/tasks', state);
 
-    setState((prev) => ({
-      ...prev,
-      driver: '',
-      week: 1,
-      day: 1,
-      startTime: 0,
-      endTime: 1,
-      location: '',
-      jobType: '',
-    }));
-    setOpen(false);
+      if (res.status === 200) {
+        updateTasksList(res.data);
+        setState((prev) => ({
+          ...prev,
+          driver: '',
+          week: 1,
+          day: 1,
+          startTime: 0,
+          endTime: 1,
+          location: '',
+          jobType: '',
+        }));
+        setOpen(false);
+      } else {
+      }
+    }
   };
 
   const body = (
@@ -139,20 +156,6 @@ const FormModal = ({ drivers, driver, selectedWeek, updateTasksList }) => {
           value={state.week}
           onChange={changeInput}
         />
-        {/* <TextField
-          required
-          className={`${classes.inputMargin} ${classes.smallerWidth}`}
-          id='day'
-          label='Day'
-          name='day'
-          type='number'
-          InputProps={{ inputProps: { min: 1, max: 7 } }}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          value={state.day}
-          onChange={changeInput}
-        /> */}
         <TextField
           required
           id='day'
