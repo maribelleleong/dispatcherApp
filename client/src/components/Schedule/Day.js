@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     marginBottom: theme.spacing(1),
     textAlign: 'center',
-    color: theme.palette.text.secondary,
   },
   blue: {
     backgroundColor: '#CCF0F8',
@@ -22,8 +21,8 @@ const useStyles = makeStyles((theme) => ({
   yellow: {
     background: '#FDF57B',
   },
-  green: {
-    background: '#A9FFEB',
+  purple: {
+    background: '#D8ADFA',
   },
 }));
 
@@ -37,7 +36,7 @@ const Day = ({ day, dayTasks }) => {
     if (task === 'Other') {
       return classes.yellow;
     } else {
-      return classes.green;
+      return classes.purple;
     }
   };
 
