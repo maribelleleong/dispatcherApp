@@ -68,6 +68,16 @@ const UpdateModal = ({
     }
   };
 
+  const handleDelete = async () => {
+    try {
+      const res = await axios.post('/tasks/delete', { ...state, id: task.id });
+      updateTasksList(res.data);
+      handleClose();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handleCancel = () => {
     setError(false);
     reset();
@@ -104,6 +114,7 @@ const UpdateModal = ({
         changeInput,
         handleSubmit,
         handleReplace,
+        handleDelete,
         handleCancel,
         driver,
         state,

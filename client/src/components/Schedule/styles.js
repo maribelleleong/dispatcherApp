@@ -12,6 +12,7 @@ const styles = (theme) => ({
     padding: theme.spacing(2),
     marginBottom: theme.spacing(1),
     textAlign: 'center',
+    position: 'relative',
   },
   formPaper: {
     position: 'absolute',

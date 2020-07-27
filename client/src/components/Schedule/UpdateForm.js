@@ -22,6 +22,7 @@ const UpdateForm = ({
   changeInput,
   handleSubmit,
   handleReplace,
+  handleDelete,
   handleCancel,
   driver,
   state,
@@ -34,7 +35,7 @@ const UpdateForm = ({
   return (
     <div style={modalStyle} className={classes.formPaper}>
       <h2 className={classes.titleMargin} id='simple-modal-title'>
-        Update Task Form
+        Task Details
       </h2>
       <form onSubmit={handleSubmit}>
         <TextField
@@ -139,15 +140,26 @@ const UpdateForm = ({
           value={state.location}
         />
         {!error && (
-          <Button
-            color='primary'
-            variant='outlined'
-            className={classes.inputMargin}
-            type='submit'
-          >
-            Update
-          </Button>
+          <>
+            <Button
+              color='primary'
+              variant='outlined'
+              className={classes.inputMargin}
+              type='submit'
+            >
+              Update
+            </Button>
+            <Button
+              color='secondary'
+              variant='outlined'
+              className={classes.inputMargin}
+              onClick={handleDelete}
+            >
+              Delete
+            </Button>
+          </>
         )}
+
         {error && (
           <>
             <Typography className={classes.inputMargin}>

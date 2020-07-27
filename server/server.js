@@ -51,4 +51,13 @@ app.post('/tasks', (req, res) => {
   res.status(200).json(tasks_list);
 });
 
+app.post('/tasks/delete', (req, res) => {
+  const { id, week, day, driver } = req.body;
+
+  const weekTasksArr = tasks_list[driver][week][day].tasks;
+  const newWeekTasks = weekTasksArr.filter((task) => task.id !== id);
+  tasks_list[driver][week][day].tasks = newWeekTasks;
+  res.status(200).json(tasks_list);
+});
+
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
