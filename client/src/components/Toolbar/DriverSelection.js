@@ -22,8 +22,9 @@ const DriverSelection = ({ drivers, driver, setDriver }) => {
       <FormControl className={classes.formControl}>
         <InputLabel id='demo-simple-select-label'>Driver</InputLabel>
         <Select
-          labelId='demo-simple-select-label'
-          id='demo-simple-select'
+          labelId='driver-selection'
+          id='driver-selection'
+          variant='outlined'
           value={driver}
           onChange={setDriver}
         >

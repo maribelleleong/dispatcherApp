@@ -9,3 +9,7 @@ export const dayObj = {
 };
 
 export const jobTypes = ['Drop-Off', 'Pick-Up', 'Other'];
+
+export const PICK_UP = 'Pick-Up';
+export const DROP_OFF = 'Drop-Off';
+export const OTHER = 'Other';

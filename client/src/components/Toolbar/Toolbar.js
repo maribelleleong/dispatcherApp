@@ -12,6 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(styles);
 
 const Toolbar = ({
+  tasksList,
   drivers,
   driver,
   setDriver,
@@ -37,7 +38,12 @@ const Toolbar = ({
       />
       <WeekSelection setWeek={setWeek} week={week} />
       <Box display='flex' className={classes.buttonMargin}>
-        <DownloadButton className={classes.addMargin} />
+        <DownloadButton
+          tasksList={tasksList}
+          drivers={drivers}
+          driver={driver}
+          className={classes.rightMargin}
+        />
         <NewTaskButton
           drivers={drivers}
           driver={driver}

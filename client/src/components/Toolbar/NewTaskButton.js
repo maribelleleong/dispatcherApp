@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import NewTaskForm from './NewTaskForm';
+import styles from './styles';
 
 import axios from 'axios';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(styles);
 
 const NewTaskButton = ({
   drivers,
@@ -12,6 +16,8 @@ const NewTaskButton = ({
   hasTaskConflict,
   updateTasksList,
 }) => {
+  const classes = useStyles();
+
   const [state, setState] = useState({
     driver,
     week: selectedWeek,
@@ -121,7 +127,12 @@ const NewTaskButton = ({
 
   return (
     <div>
-      <Button variant='contained' color='primary' onClick={handleOpen}>
+      <Button
+        variant='contained'
+        color='primary'
+        onClick={handleOpen}
+        className={classes.createBtn}
+      >
         Create Task
       </Button>
       <Modal

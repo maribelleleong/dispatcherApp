@@ -5,7 +5,7 @@ const styles = (theme) => ({
     flexGrow: 1,
   },
   paper: {
-    padding: theme.spacing(2),
+    // padding: theme.spacing(2),
     textAlign: 'center',
     fontSize: '0.2rem',
     padding: theme.spacing(0.4),

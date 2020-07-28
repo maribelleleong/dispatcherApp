@@ -107,6 +107,7 @@ function App() {
     <Router>
       <Navbar />
       <Toolbar
+        tasksList={state.tasksList}
         drivers={state.drivers}
         driver={state.driver}
         setDriver={setDriver}

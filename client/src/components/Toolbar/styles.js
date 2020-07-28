@@ -16,6 +16,16 @@ const styles = (theme) => ({
     margin: theme.spacing(1),
     minWidth: 120,
   },
+  downloadBtn: {
+    backgroundColor: '#0272b8',
+    '&:hover': {},
+  },
+  createBtn: {
+    backgroundColor: '#0067D4',
+  },
+  linkStyle: {
+    textDecoration: 'none',
+  },
   smallerWidth: {
     width: '6rem',
   },
@@ -35,7 +45,9 @@ const styles = (theme) => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
   },
-  addMargin: { marginRight: theme.spacing(1) },
+  topMargin: { marginTop: theme.spacing(2) },
+  rightMargin: { marginRight: theme.spacing(1) },
+  moreRightMargin: { marginRight: theme.spacing(3) },
   show: {
     visibility: 'visible',
   },
