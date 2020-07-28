@@ -62,7 +62,7 @@ const Card = ({
     <Grid
       className={classes.grid}
       key={task.id}
-      style={{ marginTop: `${(task.start_time - marginDiff) * 3.72}rem` }}
+      style={{ marginTop: `${(task.start_time - marginDiff) * 3.76}rem` }}
       item
       xs
     >
@@ -77,10 +77,18 @@ const Card = ({
           <Typography gutterBottom>{task.type}</Typography>
           {task.end_time - task.start_time >= 2 ? (
             <>
-              <Typography gutterBottom variant='subtitle1'>
+              <Typography
+                gutterBottom
+                variant='subtitle1'
+                className={classes.smallerText}
+              >
                 {task.location}
               </Typography>
-              <Typography gutterBottom variant='subtitle1'>
+              <Typography
+                gutterBottom
+                variant='subtitle1'
+                className={classes.smallerText}
+              >
                 {task.start_time <= 9
                   ? `0${task.start_time}:00`
                   : `${task.start_time}:00`}{' '}

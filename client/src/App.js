@@ -67,14 +67,14 @@ function App() {
     const driverTaskList = state.tasksList[driver];
 
     if (!driverTaskList[week]) {
-      return true;
+      return false;
     }
     if (!driverTaskList[week][day]) {
-      return true;
+      return false;
     }
 
     if (!driverTaskList[week][day].tasks) {
-      return true;
+      return false;
     }
 
     let checking = false;
