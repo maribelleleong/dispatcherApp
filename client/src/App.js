@@ -79,22 +79,21 @@ function App() {
 
     let checking = false;
     driverTaskList[week][day].tasks.forEach((task) => {
-      if (startTime >= task.start_time && startTime < task.end_time) {
+      const task_startTime = Number(task.start_time);
+      const task_endTime = Number(task.end_time);
+      if (startTime >= task_startTime && startTime < task_endTime) {
         checking = true;
       }
 
-      if (endTime > task.start_time && endTime <= task.end_time) {
+      if (endTime > task_startTime && endTime <= task_endTime) {
         checking = true;
       }
 
-      if (startTime <= task.start_time && endTime >= task.end_time) {
+      if (startTime <= task_startTime && endTime >= task_endTime) {
         checking = true;
       }
 
-      console.log('id: ', id);
-      console.log('task_id: ', task.id);
       if (id === task.id) {
-        console.log('same id aye');
       }
 
       if (update && id === task.id && checking) {
