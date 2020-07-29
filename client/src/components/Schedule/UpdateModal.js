@@ -33,6 +33,13 @@ const UpdateModal = ({
     setState((prev) => ({ ...prev, [inputName]: inputValue }));
   };
 
+  const changeTimeInput = (e) => {
+    const inputName = e.target.name;
+    const inputValue = Number(e.target.value);
+
+    setState((prev) => ({ ...prev, [inputName]: inputValue }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -122,6 +129,7 @@ const UpdateModal = ({
     <UpdateForm
       {...{
         changeInput,
+        changeTimeInput,
         handleSubmit,
         handleReplace,
         handleDelete,

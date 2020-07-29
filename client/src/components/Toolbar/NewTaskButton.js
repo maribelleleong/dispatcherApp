@@ -46,6 +46,13 @@ const NewTaskButton = ({
     setState((prev) => ({ ...prev, [inputName]: inputValue }));
   };
 
+  const changeTimeInput = (e) => {
+    const inputName = e.target.name;
+    const inputValue = Number(e.target.value);
+
+    setState((prev) => ({ ...prev, [inputName]: inputValue }));
+  };
+
   // action for Submit btn
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -137,6 +144,7 @@ const NewTaskButton = ({
         drivers,
         driver,
         changeInput,
+        changeTimeInput,
         handleSubmit,
         handleOverwrite,
         handleCancel,

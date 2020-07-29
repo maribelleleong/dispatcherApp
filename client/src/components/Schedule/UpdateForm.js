@@ -21,6 +21,7 @@ const useStyles = makeStyles(styles);
 
 const UpdateForm = ({
   changeInput,
+  changeTimeInput,
   handleSubmit,
   handleReplace,
   handleDelete,
@@ -97,7 +98,7 @@ const UpdateForm = ({
             shrink: true,
           }}
           value={state.startTime}
-          onChange={changeInput}
+          onChange={changeTimeInput}
         />
         <TextField
           required
@@ -111,7 +112,7 @@ const UpdateForm = ({
             shrink: true,
           }}
           value={state.endTime}
-          onChange={changeInput}
+          onChange={changeTimeInput}
         />
         <br />
         <TextField

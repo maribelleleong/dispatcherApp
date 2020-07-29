@@ -24,6 +24,7 @@ const NewTaskForm = ({
   drivers,
   driver,
   changeInput,
+  changeTimeInput,
   handleSubmit,
   handleOverwrite,
   handleCancel,
@@ -102,7 +103,7 @@ const NewTaskForm = ({
             shrink: true,
           }}
           value={state.startTime}
-          onChange={changeInput}
+          onChange={changeTimeInput}
         />
 
         <TextField
@@ -117,7 +118,7 @@ const NewTaskForm = ({
             shrink: true,
           }}
           value={state.endTime}
-          onChange={changeInput}
+          onChange={changeTimeInput}
         />
         <br />
         <TextField

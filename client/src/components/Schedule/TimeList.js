@@ -20,7 +20,7 @@ const TimeList = () => {
   return (
     <Grid container spacing={1} justify='flex-start' alignItems='flex-start'>
       <Grid key={0} item xs>
-        <Paper className={classes.paper}>{'Time'}</Paper>
+        <Paper className={classes.paper}>{'    Time    '}</Paper>
       </Grid>
       {timeArr().map((value) => (
         <Grid key={value} item xs>
