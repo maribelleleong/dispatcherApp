@@ -49,6 +49,8 @@ const Day = ({
         style={{
           gridRow: '1',
           gridColumn: `${dayNum + 1}`,
+          textTransform: 'uppercase',
+          fontWeight: 'bold',
         }}
       >
         {day}

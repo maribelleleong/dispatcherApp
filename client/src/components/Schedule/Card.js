@@ -61,14 +61,22 @@ const Card = ({
     <>
       <Tooltip title={taskInfo} placement='top-start'>
         <Paper
-          className={`${classes.cardPaper} ${getColor(task.type)}`}
+          className={`${classes.paper} ${classes.cardPaper} ${getColor(
+            task.type
+          )}`}
           style={{
             gridRow: `${task.start_time + 2} / ${task.end_time + 2}`,
             gridColumn: `${dayNum + 1}`,
           }}
           onClick={handleOpen}
         >
-          <Typography gutterBottom>{task.type}</Typography>
+          <Typography
+            gutterBottom
+            variant='subtitle1'
+            className={classes.cardTitle}
+          >
+            {task.type}
+          </Typography>
           {task.end_time - task.start_time >= 2 ? (
             <>
               <Typography

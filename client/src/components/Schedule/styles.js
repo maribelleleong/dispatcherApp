@@ -5,6 +5,7 @@ const styles = (theme) => ({
     flexGrow: 1,
   },
   paper: {
+    fontFamily: `"Roboto", "Helvetica", "Arial", sans-serif`,
     // padding: theme.spacing(2),
     textAlign: 'center',
     fontSize: '0.2rem',
@@ -19,16 +20,8 @@ const styles = (theme) => ({
     },
   },
   cardPaper: {
-    textAlign: 'center',
-    position: 'relative',
-    fontSize: '0.2rem',
-    padding: theme.spacing(0.4),
-    '@media (min-width:600px)': {
-      fontSize: '1rem',
-      padding: theme.spacing(1),
-    },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '1.5rem',
+    '&:hover': {
+      cursor: 'pointer',
     },
   },
   formPaper: {
@@ -38,6 +31,20 @@ const styles = (theme) => ({
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+  },
+  cardTitle: {
+    fontWeight: 'bold',
+    fontSize: '0.4rem',
+    padding: theme.spacing(0.4),
+    '@media (min-width:600px)': {
+      fontSize: '0.6rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '0.8rem',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '1.1rem',
+    },
   },
   smallerText: {
     fontSize: '0.2rem',
@@ -68,7 +75,8 @@ const styles = (theme) => ({
     minWidth: '10rem',
   },
   titleMargin: {
-    margin: theme.spacing(2, 2),
+    fontFamily: `"Roboto", "Helvetica", "Arial", "sans-serif"`,
+    margin: theme.spacing(2),
   },
   inputMargin: {
     margin: theme.spacing(2),

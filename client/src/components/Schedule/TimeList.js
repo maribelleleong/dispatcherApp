@@ -25,7 +25,7 @@ const TimeList = () => {
           gridColumn: '1',
         }}
       >
-        {'Time'}
+        {' '}
       </Paper>
       {timeArr().map((time, i) => (
         <Paper

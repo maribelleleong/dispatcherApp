@@ -33,7 +33,8 @@ const styles = (theme) => ({
     minWidth: '10rem',
   },
   titleMargin: {
-    margin: theme.spacing(2, 2),
+    fontFamily: `"Roboto", "Helvetica", "Arial", sans-serif`,
+    margin: theme.spacing(2),
   },
   inputMargin: {
     margin: theme.spacing(2),
