@@ -3,7 +3,6 @@ import Card from './Card';
 import styles from './styles';
 
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(styles);
@@ -24,7 +23,6 @@ const Day = ({
 
     for (let i = 0; i < dayTasks.tasks.length; i++) {
       let task = dayTasks.tasks[i];
-      let marginDiff = i === 0 ? 0 : dayTasks.tasks[i - 1].end_time;
 
       taskSlotGrids.push(
         <Card
@@ -36,7 +34,6 @@ const Day = ({
             week,
             dayNum,
             driver,
-            marginDiff,
             i,
           }}
         />
@@ -46,10 +43,18 @@ const Day = ({
   };
 
   return (
-    <Grid key={day} item xs>
-      <Paper className={classes.paper}>{day}</Paper>
+    <>
+      <Paper
+        className={classes.paper}
+        style={{
+          gridRow: '1',
+          gridColumn: `${dayNum + 1}`,
+        }}
+      >
+        {day}
+      </Paper>
       {dayTasks ? getTaskSlots() : null}
-    </Grid>
+    </>
   );
 };
 

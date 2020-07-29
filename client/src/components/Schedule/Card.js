@@ -3,7 +3,6 @@ import UpdateModal from './UpdateModal';
 import styles from './styles';
 
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,7 +16,6 @@ const Card = ({
   week,
   dayNum,
   driver,
-  marginDiff,
   i,
 }) => {
   const classes = useStyles();
@@ -60,22 +58,13 @@ const Card = ({
   );
 
   return (
-    <Grid
-      className={classes.grid}
-      key={task.id}
-      style={{ marginTop: `${(task.start_time - marginDiff) * 3.76}rem` }}
-      item
-      xs
-    >
+    <>
       <Tooltip title={taskInfo} placement='top-start'>
         <Paper
           className={`${classes.cardPaper} ${getColor(task.type)}`}
           style={{
-            height: `${
-              i === 0
-                ? (task.end_time - task.start_time) * 3.72
-                : (task.end_time - task.start_time) * 3.5
-            }rem `,
+            gridRow: `${task.start_time + 2} / ${task.end_time + 2}`,
+            gridColumn: `${dayNum + 1}`,
           }}
           onClick={handleOpen}
         >
@@ -116,7 +105,7 @@ const Card = ({
         week={week}
         task={task}
       />
-    </Grid>
+    </>
   );
 };
 
