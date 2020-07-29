@@ -2,7 +2,8 @@ import React from 'react';
 import styles from './styles';
 
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(styles);
@@ -18,16 +19,28 @@ const TimeList = () => {
   const classes = useStyles();
 
   return (
-    <Grid container spacing={1} justify='flex-start' alignItems='flex-start'>
-      <Grid key={0} item xs>
-        <Paper className={classes.paper}>{'    Time    '}</Paper>
-      </Grid>
-      {timeArr().map((value) => (
-        <Grid key={value} item xs>
-          <Paper className={classes.paper}>{value}</Paper>
-        </Grid>
+    <>
+      <Paper
+        className={classes.paper}
+        style={{
+          gridRow: '1',
+          gridColumn: '1',
+        }}
+      >
+        {'Time'}
+      </Paper>
+      {timeArr().map((time, i) => (
+        <Paper
+          className={classes.paper}
+          style={{
+            gridRow: `${2 + i}`,
+            gridColumn: '1',
+          }}
+        >
+          {time}
+        </Paper>
       ))}
-    </Grid>
+    </>
   );
 };
 

@@ -74,6 +74,15 @@ const styles = (theme) => ({
   inputMargin: {
     margin: theme.spacing(2),
   },
+
+  gridContainer: {
+    height: '100%',
+    width: '100%',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(8, 1fr)',
+    gridTemplateRows: 'repeat(25, 1fr)',
+    gridGap: '0.5rem',
+  },
 });
 
 export default styles;
