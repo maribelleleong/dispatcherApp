@@ -81,7 +81,7 @@ const ReportFormDialog = ({
           select
           label='Driver'
           name='driver'
-          value={state.driver}
+          value={state.driver ? state.driver : drivers[0]}
           onChange={changeInput}
           variant='outlined'
           className={classes.moreRightMargin}
