@@ -29,6 +29,7 @@ const TimeList = () => {
       </Paper>
       {timeArr().map((time, i) => (
         <Paper
+          key={i}
           className={classes.paper}
           style={{
             gridRow: `${2 + i}`,
