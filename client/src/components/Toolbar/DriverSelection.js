@@ -1,10 +1,8 @@
 import React from 'react';
 import styles from './styles';
 
-import InputLabel from '@material-ui/core/InputLabel';
+import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(styles);
@@ -19,18 +17,23 @@ const DriverSelection = ({ drivers, driver, setDriver }) => {
   ));
   return (
     <div>
-      <FormControl className={classes.formControl}>
-        <InputLabel id='demo-simple-select-label'>Driver</InputLabel>
-        <Select
-          labelId='driver-selection'
-          id='driver-selection'
-          variant='outlined'
-          value={driver}
-          onChange={setDriver}
-        >
-          {MenuItems}
-        </Select>
-      </FormControl>
+      <TextField
+        id='driver-selection'
+        select
+        label='Driver'
+        name='driver'
+        value={driver}
+        variant='outlined'
+        value={driver}
+        onChange={setDriver}
+        className={classes.largerWidth}
+      >
+        {drivers.map((option) => (
+          <MenuItem key={option} value={option}>
+            {option}
+          </MenuItem>
+        ))}
+      </TextField>
     </div>
   );
 };

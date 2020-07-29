@@ -19,7 +19,7 @@ import { generateCSVData } from '../../helpers/generateCSVData';
 
 const useStyles = makeStyles(styles);
 
-const dayIntervalArr = ['2', '4', '7', '14', '28'];
+const dayIntervalArr = [2, 4, 7, 14, 28];
 
 const ReportFormDialog = ({
   tasksList,
@@ -28,11 +28,12 @@ const ReportFormDialog = ({
   open,
   handleClose,
 }) => {
+  console.log('driver is ', driver);
   const classes = useStyles();
 
   const [state, setState] = useState({
-    dayInterval: Number(dayIntervalArr[0]),
-    driver: driver,
+    dayInterval: dayIntervalArr[0],
+    driver,
   });
 
   const changeInput = (e) => {
@@ -84,7 +85,7 @@ const ReportFormDialog = ({
           value={state.driver ? state.driver : drivers[0]}
           onChange={changeInput}
           variant='outlined'
-          className={classes.moreRightMargin}
+          className={`${classes.moreRightMargin} ${classes.largerWidth}`}
         >
           {drivers.map((option) => (
             <MenuItem key={option} value={option}>

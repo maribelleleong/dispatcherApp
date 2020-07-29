@@ -44,7 +44,6 @@ const WeekSelection = ({ setWeek, week }) => {
       <Typography variant='h6' gutterBottom>
         Week{' '}
         <TextField
-          className={classes.smallerWidth}
           defaultValue={week}
           id='standard-number'
           type='number'

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import styles from './styles';
+import { dayObj, jobTypes } from '../../helpers/constantObj';
+import AlertTag from './AlertTag';
 
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
 
-import { dayObj, jobTypes } from '../../helpers/constantObj';
+import { makeStyles } from '@material-ui/core/styles';
 
 function getModalStyle() {
   return {
@@ -27,17 +28,20 @@ const NewTaskForm = ({
   handleOverwrite,
   handleCancel,
   error,
+  onClose,
+  timeError,
   state,
 }) => {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
-
+  // const [openAlert, setOpenAlert] = useState
   return (
     <div style={modalStyle} className={classes.formPaper}>
       <h2 className={classes.titleMargin} id='simple-modal-title'>
         Create Task Form
       </h2>
       <form onSubmit={handleSubmit}>
+        {timeError && <AlertTag openAlert={timeError} onClose={onClose} />}
         <TextField
           required
           id='driver'
@@ -100,12 +104,13 @@ const NewTaskForm = ({
           value={state.startTime}
           onChange={changeInput}
         />
+
         <TextField
           required
           className={`${classes.inputMargin} ${classes.smallerWidth}`}
           id='end-time'
           name='endTime'
-          label='Start Time'
+          label='End Time'
           type='number'
           InputProps={{ inputProps: { min: 1, max: 24 } }}
           InputLabelProps={{
@@ -156,7 +161,7 @@ const NewTaskForm = ({
           <>
             <Typography className={classes.inputMargin}>
               New task has time conflicts with existing task(s). Would you like
-              to overwrite?{' '}
+              to overwrite?
             </Typography>
             <Button
               color='primary'

@@ -28,6 +28,7 @@ const NewTaskButton = ({
     type: '',
   });
   const [error, setError] = useState(false);
+  const [timeError, setTimeError] = useState(false);
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -45,9 +46,16 @@ const NewTaskButton = ({
     setState((prev) => ({ ...prev, [inputName]: inputValue }));
   };
 
+  // action for Submit btn
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (Number(state.endTime) <= Number(state.startTime)) {
+      setTimeError(true);
+      return;
+    }
+
+    // check conflict
     if (
       hasTaskConflict(
         state.driver,
@@ -63,13 +71,20 @@ const NewTaskButton = ({
       try {
         await submitPostRequest();
         setOpen(false);
+        setTimeError(false);
       } catch (err) {
         console.log(err);
       }
     }
   };
 
+  // action for Overwrite btn
   const handleOverwrite = async () => {
+    if (Number(state.endTime) <= Number(state.startTime)) {
+      setTimeError(true);
+      return;
+    }
+
     try {
       await submitPostRequest();
       setError(false);
@@ -79,9 +94,16 @@ const NewTaskButton = ({
     }
   };
 
+  // action for Cancel btn
   const handleCancel = () => {
     setError(false);
+    setTimeError(false);
     reset();
+  };
+
+  // onClose for AlertTag
+  const onClose = () => {
+    setTimeError(false);
   };
 
   const submitPostRequest = async () => {
@@ -119,7 +141,8 @@ const NewTaskButton = ({
         handleOverwrite,
         handleCancel,
         error,
-        setError,
+        timeError,
+        onClose,
         state,
       }}
     />
