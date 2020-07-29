@@ -19,7 +19,6 @@ const styles = (theme) => ({
     },
   },
   cardPaper: {
-    marginBottom: theme.spacing(1),
     textAlign: 'center',
     position: 'relative',
     fontSize: '0.2rem',
@@ -81,7 +80,7 @@ const styles = (theme) => ({
     display: 'grid',
     gridTemplateColumns: 'repeat(8, 1fr)',
     gridTemplateRows: 'repeat(25, 1fr)',
-    gridGap: '0.5rem',
+    gridGap: '0.3rem',
   },
 });
 
