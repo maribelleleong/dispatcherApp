@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import Alert from '@material-ui/lab/Alert';
 import IconButton from '@material-ui/core/IconButton';

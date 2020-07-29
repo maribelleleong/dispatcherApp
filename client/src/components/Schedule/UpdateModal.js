@@ -24,6 +24,7 @@ const UpdateModal = ({
     location: task.location,
   });
   const [error, setError] = useState(false);
+  const [timeError, setTimeError] = useState(false);
 
   const changeInput = (e) => {
     const inputName = e.target.name;
@@ -34,7 +35,12 @@ const UpdateModal = ({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('ello you submit');
+
+    if (Number(state.endTime) <= Number(state.startTime)) {
+      setTimeError(true);
+      return;
+    }
+
     if (
       hasTaskConflict(
         state.driver,
@@ -83,6 +89,10 @@ const UpdateModal = ({
     reset();
   };
 
+  const onClose = () => {
+    setTimeError(false);
+  };
+
   const submitPostRequest = async () => {
     const res = await axios.post('/tasks', state);
 
@@ -119,6 +129,8 @@ const UpdateModal = ({
         driver,
         state,
         error,
+        timeError,
+        onClose,
       }}
     />
   );

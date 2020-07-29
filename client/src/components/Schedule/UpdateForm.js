@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AlertTag from '../layout/AlertTag';
 import styles from './styles';
 import { dayObj, jobTypes } from '../../helpers/constantObj';
 
@@ -27,6 +28,8 @@ const UpdateForm = ({
   driver,
   state,
   error,
+  timeError,
+  onClose,
 }) => {
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
@@ -38,6 +41,8 @@ const UpdateForm = ({
         Task Details
       </h2>
       <form onSubmit={handleSubmit}>
+        {timeError && <AlertTag openAlert={timeError} onClose={onClose} />}
+
         <TextField
           className={classes.inputMargin}
           id='filled-read-only-input'

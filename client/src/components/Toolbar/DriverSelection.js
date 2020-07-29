@@ -9,12 +9,6 @@ const useStyles = makeStyles(styles);
 
 const DriverSelection = ({ drivers, driver, setDriver }) => {
   const classes = useStyles();
-
-  const MenuItems = drivers.map((driver) => (
-    <MenuItem key={driver} value={driver}>
-      {driver}
-    </MenuItem>
-  ));
   return (
     <div>
       <TextField
@@ -24,7 +18,6 @@ const DriverSelection = ({ drivers, driver, setDriver }) => {
         name='driver'
         value={driver}
         variant='outlined'
-        value={driver}
         onChange={setDriver}
         className={classes.largerWidth}
       >
