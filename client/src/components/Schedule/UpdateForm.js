@@ -144,6 +144,7 @@ const UpdateForm = ({
           className={classes.inputMargin}
           value={state.location}
         />
+        <br />
         {!error && (
           <>
             <Button

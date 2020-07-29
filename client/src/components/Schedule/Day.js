@@ -37,6 +37,7 @@ const Day = ({
             dayNum,
             driver,
             marginDiff,
+            i,
           }}
         />
       );

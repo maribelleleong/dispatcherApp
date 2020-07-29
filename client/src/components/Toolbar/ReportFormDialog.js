@@ -28,12 +28,12 @@ const ReportFormDialog = ({
   open,
   handleClose,
 }) => {
-  console.log('driver is ', driver);
+  // console.log('tasksList in ReportFormDialog is ', tasksList);
   const classes = useStyles();
 
   const [state, setState] = useState({
     dayInterval: dayIntervalArr[0],
-    driver,
+    driver: driver,
   });
 
   const changeInput = (e) => {
@@ -43,7 +43,7 @@ const ReportFormDialog = ({
     setState((prev) => ({ ...prev, [inputName]: inputVal }));
   };
 
-  const printRandom = () => {
+  const getCSV = () => {
     const csvArr = generateCSVData(state.dayInterval, tasksList[state.driver]);
 
     const options = {
@@ -82,7 +82,7 @@ const ReportFormDialog = ({
           select
           label='Driver'
           name='driver'
-          value={state.driver ? state.driver : drivers[0]}
+          value={state.driver}
           onChange={changeInput}
           variant='outlined'
           className={`${classes.moreRightMargin} ${classes.largerWidth}`}
@@ -114,7 +114,7 @@ const ReportFormDialog = ({
           color='primary'
           startIcon={<GetAppIcon />}
           className={` ${classes.topMargin} ${classes.downloadBtn}`}
-          onClick={printRandom}
+          onClick={getCSV}
         >
           Downlaod
         </Button>

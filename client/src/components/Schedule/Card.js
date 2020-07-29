@@ -18,6 +18,7 @@ const Card = ({
   dayNum,
   driver,
   marginDiff,
+  i,
 }) => {
   const classes = useStyles();
 
@@ -70,7 +71,11 @@ const Card = ({
         <Paper
           className={`${classes.cardPaper} ${getColor(task.type)}`}
           style={{
-            height: `${(task.end_time - task.start_time) * 3.5}rem`,
+            height: `${
+              i === 0
+                ? (task.end_time - task.start_time) * 3.72
+                : (task.end_time - task.start_time) * 3.5
+            }rem `,
           }}
           onClick={handleOpen}
         >
