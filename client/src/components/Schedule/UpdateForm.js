@@ -185,7 +185,7 @@ const UpdateForm = ({
         {error && (
           <>
             <Typography className={classes.inputMargin}>
-              Modified task has time conflicts with existing task(s). Would you
+              Modified task has time conflict with existing task(s). Would you
               like to replace the existing conflicted task(s) and keep the
               modified task?{' '}
             </Typography>

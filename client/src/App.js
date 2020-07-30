@@ -78,36 +78,47 @@ function App() {
     }
 
     let checking = false;
-    driverTaskList[week][day].tasks.forEach((task) => {
-      const task_startTime = Number(task.start_time);
-      const task_endTime = Number(task.end_time);
-      if (startTime >= task_startTime && startTime < task_endTime) {
-        checking = true;
-        if (update && id === task.id) {
-          checking = false;
-        }
-      }
+    if (!update) {
+      driverTaskList[week][day].tasks.forEach((task) => {
+        const task_startTime = Number(task.start_time);
+        const task_endTime = Number(task.end_time);
 
-      if (endTime > task_startTime && endTime <= task_endTime) {
-        checking = true;
-        if (update && id === task.id) {
-          checking = false;
+        if (startTime >= task_startTime && startTime < task_endTime) {
+          checking = true;
         }
-      }
 
-      if (startTime <= task_startTime && endTime >= task_endTime) {
-        checking = true;
-        if (update && id === task.id) {
-          checking = false;
+        if (endTime > task_startTime && endTime <= task_endTime) {
+          checking = true;
         }
-      }
 
-      // if (update && id === task.id && checking) {
-      //   console.log('shouldnt be here');
-      //   checking = false;
-      // }
-    });
-    console.log('herreere? ', checking);
+        if (startTime <= task_startTime && endTime >= task_endTime) {
+          checking = true;
+        }
+      });
+    } else {
+      // get the tasks that excludes itself
+      const cleanedTaskList = driverTaskList[week][day].tasks.filter(
+        (task) => task.id !== id
+      );
+
+      //check the rest
+      cleanedTaskList.forEach((task) => {
+        const task_startTime = Number(task.start_time);
+        const task_endTime = Number(task.end_time);
+
+        if (startTime >= task_startTime && startTime < task_endTime) {
+          checking = true;
+        }
+
+        if (endTime > task_startTime && endTime <= task_endTime) {
+          checking = true;
+        }
+
+        if (startTime <= task_startTime && endTime >= task_endTime) {
+          checking = true;
+        }
+      });
+    }
     return checking;
   };
 

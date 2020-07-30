@@ -57,7 +57,7 @@ const Day = ({
           justifyContent: 'center',
         }}
       >
-        <span style={{ paddingTop: '0.6rem' }}>{day}</span>
+        <span>{day}</span>
       </Paper>
       {dayTasks ? getTaskSlots() : null}
     </>

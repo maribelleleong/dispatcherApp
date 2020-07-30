@@ -164,7 +164,7 @@ const NewTaskForm = ({
         {error && (
           <>
             <Typography className={classes.inputMargin}>
-              New task has time conflicts with existing task(s). Would you like
+              New task has time conflict with existing task(s). Would you like
               to overwrite?
             </Typography>
             <Button
