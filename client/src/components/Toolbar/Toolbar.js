@@ -24,13 +24,7 @@ const Toolbar = ({
   const classes = useStyles();
 
   return (
-    <Grid
-      container
-      direction='row'
-      alignItems='flex-end'
-      justify='space-between'
-      className={classes.toolbarMargin}
-    >
+    <Grid container direction='row' className={classes.toolbarMargin}>
       <DriverSelection
         drivers={drivers}
         driver={driver}

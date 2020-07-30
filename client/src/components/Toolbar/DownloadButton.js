@@ -27,7 +27,6 @@ const DownloadButton = ({ tasksList, drivers, driver }) => {
       <Button
         variant='contained'
         color='primary'
-        size='large'
         onClick={handleOpen}
         className={`${classes.rightMargin} ${classes.downloadBtn}`}
       >

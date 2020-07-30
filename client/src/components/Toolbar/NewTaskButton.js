@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import NewTaskForm from './NewTaskForm';
+import ExitDialog from './ExitDialog';
 import styles from './styles';
 
 import axios from 'axios';
@@ -32,6 +33,7 @@ const NewTaskButton = ({
   const [error, setError] = useState(false);
   const [timeError, setTimeError] = useState(false);
   const [open, setOpen] = useState(false);
+  const [openConfirmation, setOpenConfirmation] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -39,6 +41,17 @@ const NewTaskButton = ({
 
   const handleClose = () => {
     setOpen(false);
+    setError(false);
+    reset();
+  };
+
+  const handleConfirmationOpen = () => {
+    setOpenConfirmation(true);
+  };
+
+  const handleConfirmationClose = () => {
+    setOpenConfirmation(false);
+    handleClose();
   };
 
   const changeInput = (e) => {
@@ -46,6 +59,7 @@ const NewTaskButton = ({
     const inputValue = e.target.value;
 
     setState((prev) => ({ ...prev, [inputName]: inputValue }));
+    setError(false);
   };
 
   const changeTimeInput = (e) => {
@@ -53,6 +67,7 @@ const NewTaskButton = ({
     const inputValue = Number(e.target.value);
 
     setState((prev) => ({ ...prev, [inputName]: inputValue }));
+    setError(false);
   };
 
   // action for Submit btn
@@ -107,7 +122,7 @@ const NewTaskButton = ({
   const handleCancel = () => {
     setError(false);
     setTimeError(false);
-    reset();
+    // reset();
   };
 
   // onClose for AlertTag
@@ -165,13 +180,12 @@ const NewTaskButton = ({
         color='primary'
         onClick={handleOpen}
         className={classes.createBtn}
-        size='large'
       >
         Create Task
       </Button>
       <Modal
         open={open}
-        onClose={handleClose}
+        onClose={handleConfirmationOpen}
         aria-labelledby='new-task-form-modal'
         aria-describedby='modal-to-display-new-task-form'
         closeAfterTransition
@@ -182,6 +196,11 @@ const NewTaskButton = ({
       >
         <Fade in={open}>{body}</Fade>
       </Modal>
+      <ExitDialog
+        open={openConfirmation}
+        handleClose={handleConfirmationClose}
+        handleContinue={setOpenConfirmation}
+      />
     </div>
   );
 };

@@ -45,6 +45,24 @@ const styles = (theme) => ({
   toolbarMargin: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(1),
+    alignItems: 'flex-end',
+    justify: 'space-between',
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'center',
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      alignItems: 'flex-end',
+      justifyContent: 'space-between',
+    },
+  },
+  driverSelection: {
+    minWidth: '10rem',
+    marginLeft: theme.spacing(2),
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: theme.spacing(0),
+      marginRight: theme.spacing(2),
+    },
   },
   topMargin: { marginTop: theme.spacing(2) },
   rightMargin: { marginRight: theme.spacing(1) },

@@ -52,9 +52,13 @@ const Day = ({
           gridColumn: `${dayNum + 1}`,
           textTransform: 'uppercase',
           fontWeight: 'bold',
+          paddingBottom: '20px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
-        {day}
+        <span style={{ paddingTop: '0.6rem' }}>{day}</span>
       </Paper>
       {dayTasks ? getTaskSlots() : null}
     </>
