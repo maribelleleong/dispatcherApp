@@ -83,19 +83,29 @@ function App() {
       const task_endTime = Number(task.end_time);
       if (startTime >= task_startTime && startTime < task_endTime) {
         checking = true;
+        if (update && id === task.id) {
+          checking = false;
+        }
       }
 
       if (endTime > task_startTime && endTime <= task_endTime) {
+        if (update && id === task.id) {
+          checking = false;
+        }
         checking = true;
       }
 
       if (startTime <= task_startTime && endTime >= task_endTime) {
+        if (update && id === task.id) {
+          checking = false;
+        }
         checking = true;
       }
 
-      if (update && id === task.id && checking) {
-        checking = false;
-      }
+      // if (update && id === task.id && checking) {
+      //   console.log('shouldnt be here');
+      //   checking = false;
+      // }
     });
     console.log('herreere? ', checking);
     return checking;
