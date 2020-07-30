@@ -2,19 +2,23 @@
 
 A scheduler app for a dispatcher to manage drivers' tasks.
 
+## Demo
+
+https://ninja-dispatcher.herokuapp.com/
+
 ## Setup
 
 1. Clone this repo to your local machine
-2. Install dependencies in both `client` and `server` folders
+2. Install dependencies in both root and `client` folders
 
 ```
+npm i
 cd client
 npm i
-cd ../server
-npm i
+
 ```
 
-3. To run the program, please make sure you are in the `server` folder
+3. To run the program, please make sure you are in the root folder
 
 ```
 npm run dev
