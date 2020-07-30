@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AlertTag from '../layout/AlertTag';
+import DeleteDialog from './DeleteDialog';
 import styles from './styles';
 import { dayObj, jobTypes } from '../../helpers/constantObj';
 
@@ -33,8 +34,12 @@ const UpdateForm = ({
   onClose,
 }) => {
   const classes = useStyles();
-  // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = useState(getModalStyle);
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+
+  const handleCloseDialog = () => {
+    setOpenDeleteDialog(false);
+  };
 
   return (
     <div style={modalStyle} className={classes.formPaper}>
@@ -160,10 +165,15 @@ const UpdateForm = ({
               color='secondary'
               variant='outlined'
               className={classes.inputMargin}
-              onClick={handleDelete}
+              onClick={() => setOpenDeleteDialog(true)}
             >
               Delete
             </Button>
+            <DeleteDialog
+              open={openDeleteDialog}
+              handleClose={handleCloseDialog}
+              handleDelete={handleDelete}
+            />
           </>
         )}
 
