@@ -1,11 +1,11 @@
 export const dayObj = {
-  Sun: 1,
-  Mon: 2,
-  Tues: 3,
-  Wed: 4,
-  Thur: 5,
-  Fri: 6,
-  Sat: 7,
+  Sunday: 1,
+  Monday: 2,
+  Tuesday: 3,
+  Wednesday: 4,
+  Thursday: 5,
+  Friday: 6,
+  Saturday: 7,
 };
 
 export const jobTypes = ['Drop-Off', 'Pick-Up', 'Other'];

@@ -58,6 +58,7 @@ app.post('/tasks', (req, res) => {
     driverTaskList[week][day].tasks = [...cleanedList, newTask];
   }
 
+  // if update, check if different week or day, if so remove the original from the list
   if (update) {
     const oldWeek = oldTaskInfo.week;
     const oldDay = oldTaskInfo.day;
@@ -69,8 +70,6 @@ app.post('/tasks', (req, res) => {
       ].tasks.filter((task) => task.id !== oldId);
     }
   }
-
-  // tasks_list[driver] = driverTaskList;
 
   res.status(200).json(tasks_list);
 });

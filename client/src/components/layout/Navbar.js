@@ -10,9 +10,9 @@ export default function Navbar() {
         <Link to='/'>Ninja Dispatcher</Link>
       </h1>
       <ul>
-        <Link to='/login'>
+        {/* <Link to='/login'>
           <li>Admin Login</li>
-        </Link>
+        </Link> */}
       </ul>
     </nav>
   );
