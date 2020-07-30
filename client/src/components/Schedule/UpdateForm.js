@@ -10,6 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
 
 function getModalStyle() {
@@ -193,6 +194,7 @@ const UpdateForm = ({
               variant='outlined'
               className={classes.inputMargin}
               onClick={handleReplace}
+              startIcon={<EditIcon />}
             >
               Replace
             </Button>
@@ -200,6 +202,7 @@ const UpdateForm = ({
               variant='outlined'
               className={classes.inputMargin}
               onClick={handleCancel}
+              startIcon={<CloseIcon />}
             >
               Cancel
             </Button>

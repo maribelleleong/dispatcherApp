@@ -14,6 +14,7 @@ const Card = ({
   updateTasksList,
   hasTaskConflict,
   week,
+  day,
   dayNum,
   driver,
   i,
@@ -43,6 +44,8 @@ const Card = ({
 
   const taskInfo = (
     <>
+      <Typography>Week: {week}</Typography>
+      <Typography>Day: {day}</Typography>
       <Typography>Type: {task.type}</Typography>
       <Typography>
         Time:{' '}

@@ -42,7 +42,7 @@ const WeekSelection = ({ setWeek, week }) => {
         </IconButton>
       </Box>
       <Typography variant='h6' gutterBottom>
-        Week{' '}
+        WEEK{' '}
         <TextField
           defaultValue={week}
           id='standard-number'

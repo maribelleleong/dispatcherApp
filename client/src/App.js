@@ -97,6 +97,7 @@ function App() {
         checking = false;
       }
     });
+    console.log('herreere? ', checking);
     return checking;
   };
 

@@ -32,6 +32,7 @@ const Day = ({
             updateTasksList,
             hasTaskConflict,
             week,
+            day,
             dayNum,
             driver,
             i,
