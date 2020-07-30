@@ -20,6 +20,12 @@ npm i
 npm run dev
 ```
 
+4. If you encounter `node-sass` issue, try run the following command in the `client` folder and then run step 3
+
+```
+npm rebuild node-sass
+```
+
 ### Work in Progress
 
 1. Admin Login page

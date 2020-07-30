@@ -116,7 +116,7 @@ const ReportFormDialog = ({
           className={` ${classes.topMargin} ${classes.downloadBtn}`}
           onClick={getCSV}
         >
-          Downlaod
+          Download
         </Button>
       </DialogContent>
     </Dialog>

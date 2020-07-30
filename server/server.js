@@ -22,7 +22,17 @@ app.get('/tasks', (req, res) => {
 });
 
 app.post('/tasks', (req, res) => {
-  const { driver, day, week, startTime, endTime, type, location } = req.body;
+  const {
+    driver,
+    day,
+    week,
+    startTime,
+    endTime,
+    type,
+    location,
+    update,
+    oldTaskInfo,
+  } = req.body;
   const newTask = {
     id: uuidv4(),
     start_time: startTime,
@@ -47,6 +57,21 @@ app.post('/tasks', (req, res) => {
     // update the tasks with cleanedList and newTask
     driverTaskList[week][day].tasks = [...cleanedList, newTask];
   }
+
+  if (update) {
+    console.log('ello');
+    const oldWeek = oldTaskInfo.week;
+    const oldDay = oldTaskInfo.day;
+    const oldId = oldTaskInfo.id;
+
+    if (oldWeek !== week || day !== oldDay) {
+      driverTaskList[oldWeek][oldDay].tasks = driverTaskList[oldWeek][
+        oldDay
+      ].tasks.filter((task) => task.id !== oldId);
+    }
+  }
+
+  // tasks_list[driver] = driverTaskList;
 
   res.status(200).json(tasks_list);
 });

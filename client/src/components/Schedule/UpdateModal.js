@@ -22,6 +22,7 @@ const UpdateModal = ({
     endTime: task.end_time,
     type: task.type,
     location: task.location,
+    oldTaskInfo: { week, day, id: task.id },
   });
   const [error, setError] = useState(false);
   const [timeError, setTimeError] = useState(false);
@@ -101,7 +102,10 @@ const UpdateModal = ({
   };
 
   const submitPostRequest = async () => {
-    const res = await axios.post('/tasks', state);
+    const res = await axios.post('/tasks', {
+      ...state,
+      update: true,
+    });
 
     if (res.status === 200) {
       updateTasksList(res.data);

@@ -93,9 +93,6 @@ function App() {
         checking = true;
       }
 
-      if (id === task.id) {
-      }
-
       if (update && id === task.id && checking) {
         checking = false;
       }
