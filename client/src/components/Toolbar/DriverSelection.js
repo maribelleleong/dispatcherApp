@@ -19,7 +19,7 @@ const DriverSelection = ({ drivers, driver, setDriver }) => {
         value={driver}
         variant='outlined'
         onChange={setDriver}
-        className={classes.largerWidth}
+        className={`${classes.largerWidth} ${classes.leftMargin}`}
       >
         {drivers.map((option) => (
           <MenuItem key={option} value={option}>

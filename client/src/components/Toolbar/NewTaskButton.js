@@ -163,6 +163,7 @@ const NewTaskButton = ({
         color='primary'
         onClick={handleOpen}
         className={classes.createBtn}
+        size='large'
       >
         Create Task
       </Button>

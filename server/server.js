@@ -59,7 +59,6 @@ app.post('/tasks', (req, res) => {
   }
 
   if (update) {
-    console.log('ello');
     const oldWeek = oldTaskInfo.week;
     const oldDay = oldTaskInfo.day;
     const oldId = oldTaskInfo.id;

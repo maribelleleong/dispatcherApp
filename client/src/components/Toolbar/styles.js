@@ -22,6 +22,7 @@ const styles = (theme) => ({
   },
   createBtn: {
     backgroundColor: '#0067D4',
+    marginRight: theme.spacing(3),
   },
   linkStyle: {
     textDecoration: 'none',
@@ -43,11 +44,12 @@ const styles = (theme) => ({
     marginBottom: theme.spacing(1),
   },
   toolbarMargin: {
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(2),
     marginBottom: theme.spacing(1),
   },
   topMargin: { marginTop: theme.spacing(2) },
   rightMargin: { marginRight: theme.spacing(1) },
+  leftMargin: { marginLeft: theme.spacing(2) },
   moreRightMargin: { marginRight: theme.spacing(3) },
   show: {
     visibility: 'visible',
