@@ -50,12 +50,11 @@ const Day = ({
         style={{
           gridRow: '1',
           gridColumn: `${dayNum + 1}`,
-          textTransform: 'uppercase',
           fontWeight: 'bold',
           paddingBottom: '20px',
           display: 'flex',
+          flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'center',
         }}
       >
         <span style={{ paddingTop: '0.6rem' }}>{day}</span>

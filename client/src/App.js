@@ -89,17 +89,17 @@ function App() {
       }
 
       if (endTime > task_startTime && endTime <= task_endTime) {
+        checking = true;
         if (update && id === task.id) {
           checking = false;
         }
-        checking = true;
       }
 
       if (startTime <= task_startTime && endTime >= task_endTime) {
+        checking = true;
         if (update && id === task.id) {
           checking = false;
         }
-        checking = true;
       }
 
       // if (update && id === task.id && checking) {
