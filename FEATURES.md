@@ -10,12 +10,13 @@
 
 ### Improved Features
 
-1. Scheduler display using CSS grid system
-2. Styling with Material UI
-3. Start time and end time validation
-4. Alert message shown when user inputs invalid time
-5. Left Arrow hidden when week number is 1 and Right Arrow hidden when week number is 52
-6. Tooltip appears to show more information when hovering over task in schedule (main purpose: for tasks with duration of 1 hour)
-7. Clicking on the task to show update and delete form in a modal
-8. Tasks can be better distinguished as color applied accoding task type
-9. Changed React favicon to a cute ninja
+1. Responsive webapp
+2. Scheduler display using CSS grid system
+3. Styling with Material UI
+4. Start time and end time validation
+5. Alert message shown when user inputs invalid time
+6. Left Arrow hidden when week number is 1 and Right Arrow hidden when week number is 52
+7. Tooltip appears to show more information when hovering over task in schedule (main purpose: for tasks with duration of 1 hour)
+8. Clicking on the task to show update and delete form in a modal
+9. Tasks can be better distinguished as color applied according to task type
+10. Changed React favicon to a cute ninja
