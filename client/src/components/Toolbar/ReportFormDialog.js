@@ -71,7 +71,7 @@ const ReportFormDialog = ({
       aria-labelledby='dispatcher-report-form'
     >
       <DialogTitle id='Report-Form__title'>Report Form</DialogTitle>
-      <DialogContent>
+      <DialogContent className={classes.reportFormDialog}>
         <DialogContentText>
           To download a report, please select a driver and a day interval.
         </DialogContentText>
@@ -109,10 +109,10 @@ const ReportFormDialog = ({
         </TextField>
         <br />
         <Button
-          variant='contained'
+          variant='outlined'
           color='primary'
           startIcon={<GetAppIcon />}
-          className={` ${classes.topMargin} ${classes.downloadBtn}`}
+          className={` ${classes.topMargin}`}
           onClick={getCSV}
         >
           Download

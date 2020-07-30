@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -154,8 +156,9 @@ const NewTaskForm = ({
             variant='outlined'
             className={classes.inputMargin}
             type='submit'
+            startIcon={<AddIcon />}
           >
-            Submit
+            Create
           </Button>
         )}
         {error && (
@@ -169,6 +172,7 @@ const NewTaskForm = ({
               variant='outlined'
               className={classes.inputMargin}
               onClick={handleOverwrite}
+              startIcon={<EditIcon />}
             >
               Overwrite
             </Button>

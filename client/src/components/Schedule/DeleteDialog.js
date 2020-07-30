@@ -6,6 +6,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import DeleteIcon from '@material-ui/icons/Delete';
+import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(styles);
@@ -33,6 +35,7 @@ const DeleteDialog = ({ open, handleClose, handleDelete }) => {
             handleClose();
           }}
           color='secondary'
+          startIcon={<DeleteIcon />}
         >
           Delete
         </Button>
@@ -41,6 +44,7 @@ const DeleteDialog = ({ open, handleClose, handleDelete }) => {
           variant='outlined'
           onClick={handleClose}
           color='primary'
+          startIcon={<CloseIcon />}
           autoFocus
         >
           Cancel

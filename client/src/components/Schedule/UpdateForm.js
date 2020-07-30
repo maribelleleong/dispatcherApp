@@ -8,6 +8,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { makeStyles } from '@material-ui/core/styles';
 
 function getModalStyle() {
@@ -158,6 +160,7 @@ const UpdateForm = ({
               variant='outlined'
               className={classes.inputMargin}
               type='submit'
+              startIcon={<EditIcon />}
             >
               Update
             </Button>
@@ -166,6 +169,7 @@ const UpdateForm = ({
               variant='outlined'
               className={classes.inputMargin}
               onClick={() => setOpenDeleteDialog(true)}
+              startIcon={<DeleteIcon />}
             >
               Delete
             </Button>

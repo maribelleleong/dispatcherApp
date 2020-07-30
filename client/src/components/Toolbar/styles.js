@@ -16,9 +16,8 @@ const styles = (theme) => ({
     margin: theme.spacing(1),
     minWidth: 120,
   },
-  downloadBtn: {
-    backgroundColor: '#0272b8',
-    '&:hover': {},
+  reportFormDialog: {
+    marginBottom: theme.spacing(2),
   },
   createBtn: {
     backgroundColor: '#0067D4',
