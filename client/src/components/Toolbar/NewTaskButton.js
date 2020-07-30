@@ -5,6 +5,8 @@ import styles from './styles';
 import axios from 'axios';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(styles);
@@ -170,10 +172,15 @@ const NewTaskButton = ({
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby='simple-modal-title'
-        aria-describedby='simple-modal-description'
+        aria-labelledby='new-task-form-modal'
+        aria-describedby='modal-to-display-new-task-form'
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
       >
-        {body}
+        <Fade in={open}>{body}</Fade>
       </Modal>
     </div>
   );

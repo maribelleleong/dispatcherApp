@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import UpdateForm from './UpdateForm';
+
 import axios from 'axios';
 import Modal from '@material-ui/core/Modal';
-
-import UpdateForm from './UpdateForm';
+import Button from '@material-ui/core/Button';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
 
 const UpdateModal = ({
   open,
@@ -151,10 +154,15 @@ const UpdateModal = ({
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby='simple-modal-title'
-        aria-describedby='simple-modal-description'
+        aria-labelledby='update-form-modal'
+        aria-describedby='modal-for-displaying-update-form'
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
       >
-        {body}
+        <Fade in={open}>{body}</Fade>
       </Modal>
     </div>
   );
