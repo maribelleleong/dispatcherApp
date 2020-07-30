@@ -61,7 +61,6 @@ const UpdateModal = ({
       )
     ) {
       setError(true);
-      console.log('conflicted!!');
     } else {
       try {
         await submitPostRequest();

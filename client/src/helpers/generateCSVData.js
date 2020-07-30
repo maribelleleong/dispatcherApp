@@ -21,7 +21,6 @@ export const generateCSVData = (dayInterval, data) => {
   const resultArr = [];
 
   if (!data) {
-    console.log('No data');
     return resultArr;
   }
 
@@ -58,8 +57,5 @@ export const generateCSVData = (dayInterval, data) => {
     resultArr.push(CSVObj[`day${arr[0]} - day${arr[arr.length - 1]}`]);
   });
 
-  // console.log('the resultArr', resultArr);
-  // console.log('the CSVdata2', csvData2);
-  // return csvData2;
   return resultArr;
 };

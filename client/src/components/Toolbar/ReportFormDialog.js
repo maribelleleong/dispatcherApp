@@ -28,7 +28,6 @@ const ReportFormDialog = ({
   open,
   handleClose,
 }) => {
-  // console.log('tasksList in ReportFormDialog is ', tasksList);
   const classes = useStyles();
 
   const [state, setState] = useState({
